@@ -9,6 +9,9 @@ import { AccountComponent } from './components/account/account.component';
 import { AnnouncementComponent } from './components/announcement/announcement.component';
 import { LoginComponent } from './components/login/login.component';
 import { SingUpComponent } from './components/sing-up/sing-up.component';
+import { SideBarComponent } from './components/layout/side-bar/side-bar.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,14 @@ import { SingUpComponent } from './components/sing-up/sing-up.component';
     AccountComponent,
     AnnouncementComponent,
     LoginComponent,
-    SingUpComponent
+    SingUpComponent,
+    SideBarComponent,
+    FooterComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
