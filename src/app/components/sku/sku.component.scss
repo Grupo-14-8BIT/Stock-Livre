@@ -1,14 +1,40 @@
-
 .content-wrapper {
-    display: flex;
-  }
-  
-  .app-side-bar {
-    flex: 0 0 1.5rem;
-  }
-  
-  .main-content {
-    flex: 1;  
-    overflow: auto;
-  }
-  
+  display: flex;
+}
+
+.app-side-bar {
+  flex: 0 0 1.5rem;
+}
+
+.main-content {
+  flex: 1;
+  border: 1px solid blue;
+  overflow: auto;
+}
+
+.Table-content {
+  border: 1px solid red;
+}
+
+.add-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid green;
+  padding: 30px;
+  padding-left: 2%;
+}
+
+.my-stock-container {
+  border: 1px solid orange;
+}
+
+.mystock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0.6%;
+  padding-right: 3%;
+}
+.my-stock-container{
+  padding: 2%;
+}
