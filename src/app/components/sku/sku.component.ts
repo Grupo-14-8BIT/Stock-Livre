@@ -3,40 +3,55 @@ import { Sku } from 'src/app/components/sku/sku'
 import { SkuService } from 'src/app/components/sku/sku.service'
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AddskuComponent } from './addSku/addsku.component'; // Update the import path
 
 @Component({
   selector: 'app-sku',
   templateUrl: './sku.component.html',
   styleUrls: ['./sku.component.scss']
 })
+
 export class SkuComponent implements OnInit {
   sku: Sku[]=[];
+  
+  objetoSelecionadoParaEdicao: Sku = new Sku();
+  indiceSelecionadoParaEdicao!: number;
 
   visible:boolean = false;
+  
 
-  constructor(private skuService : SkuService){}
+  constructor(private skuService : SkuService ,private addSkuComponent: AddskuComponent){}
 
     ngOnInit() {
       this.fetch();
     }
 
-    public fetch(): void{
-      this.skuService.fetch().subscribe(
-        (response: Sku[])=>{
-          this.sku = response;
+     fetch(){
+      this.skuService.fetch().subscribe({
+        next: sku => { // QUANDO DÁ CERTO
+          this.sku = sku;
         },
-        (error: HttpErrorResponse)=>{
+        error: (error: HttpErrorResponse) => {
           alert(error.message);
         }
-      );
+      });
     }
-
-  
 
   onclick(){
     this.visible = !this.visible;
   }
 
+
+  update(id:number,sku:Sku) {
+    this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
+    this.indiceSelecionadoParaEdicao = id;
+
+  }
+  addOuEditarProduto(sku: Sku) {
+
+    
+
+  }
 
 
 }

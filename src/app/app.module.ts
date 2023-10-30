@@ -13,6 +13,9 @@ import { SideBarComponent } from './components/layout/side-bar/side-bar.componen
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { AddskuComponent } from './components/sku/addSku/addsku.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { AddskuComponent } from './components/sku/addSku/addsku.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

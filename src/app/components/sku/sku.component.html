@@ -45,17 +45,15 @@
 
         <div class="add-row gap-3">
             <h2>WAREHOUSE ADMINISTRATION</h2>
-            <button (click)="onclick()" type="button" class="btn btn-primary">ADD [+]</button>
         </div>
 
         <ng-container *ngIf="visible" >
-            <app-addsku></app-addsku>
+            <app-addsku [sku]="objetoSelecionadoParaEdicao"></app-addsku>
         </ng-container>
 
         <div class="my-stock-container">
             <div class="mystock">
                 <h2>My Stock</h2>
-                <button type="button" class="btn btn-success">Select</button>
             </div>
             <div class="table table-dark table-striped">
                 <table class="table">
@@ -65,16 +63,18 @@
                             <th scope="col">Foto</th>
                             <th scope="col">Produto</th>
                             <th scope="col">SKU</th>   
-                            <th scope="col">Descricao</th>             
+                            <th scope="col">Descricao</th>   
+                            <th scope="col">editar</th>          
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                         <tr *ngFor="let skus of sku">
-                            <th scope="row"> {{ skus.id }} <input type="checkbox"></th>
-                            <td>{{ skus.foto }}</td>
-                            <td>{{ skus.nome }}</td>
-                            <td>{{ skus.sku }}</td>
-                            <td>{{ skus.descricao }}</td>
+                         <tr *ngFor="let sku of sku ; let i = index">
+                            <th scope="row"> {{ sku.id }} </th>
+                            <td>{{ sku.foto }}</td>
+                            <td>{{ sku.nome }}</td>
+                            <td>{{ sku.sku }}</td>
+                            <td>{{ sku.descricao }}</td>
+                            <td><button type="button"  (click)="onclick()"  (click)="update(i, sku)" class="btn btn-success">Select</button></td>
                         </tr> 
                         <tr>
                             <th scope="row">1</th>
@@ -84,6 +84,7 @@
                             <td>The Acer Spin 5 is a lightweight, all-aluminum, two-in-one laptop 
                                 with a high-resolution, 14-inch display powered by speedy 12th-gen 
                                 Intel silicon.</td>
+                                <td><button type="button"  (click)="onclick()" class="btn btn-success">Select</button></td>
                         </tr>
                     </tbody>
                 </table>
