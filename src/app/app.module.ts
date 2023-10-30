@@ -13,6 +13,8 @@ import { SideBarComponent } from './components/layout/side-bar/side-bar.componen
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddAccountComponent } from './components/layout/add-account/add-account.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,13 @@ import { HttpClientModule } from '@angular/common/http';
     SideBarComponent,
     FooterComponent,
     HomePageComponent,
+    AddAccountComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

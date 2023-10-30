@@ -17,8 +17,26 @@
                             <h2>User <b>Management</b></h2>
                         </div>
                         <div class="col-sm-7">
-                            <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
-                            <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
+<a class="btn btn-secondary" data-toggle="modal" data-target="#addAccountModal">
+    <span>➕   Add New Account</span>
+</a>
+
+<div class="modal fade" id="addAccountModal" tabindex="-1" aria-labelledby="addAccountModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAccountModalLabel">Add New Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="showAddAccount = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-add-account [carro]="carroSelecionadoParaEdicao" (retorno)="addOuEditarCarro($event)"></app-add-account>
+      </div>
+    </div>
+  </div>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -39,8 +57,8 @@
                         <td>{{ account.refresh_token }}</td>
                         <td>{{ account.expires | date:'dd/MM/yyyy' }}</td>
                         <td>
-                            <button (click)="editAccount(account.id)">Edit</button>
-                            <button (click)="deleteAccount(account.id)">Delete</button>
+                            <button (click)="deleteAccount(account.id)">🗑️</button>
+                            <button (click)="editAccount(account.id)">⚙️</button>
                         </td> 
                     </tr>
                 </tbody>

@@ -21,9 +21,9 @@ export class AccountComponent implements OnInit {
         usuario: {}
     }
   ];
-  
+  carroSelecionadoParaEdicao: any;
   constructor(private accountService: AccountService) { }
-
+  showAddAccount: boolean = false;
   ngOnInit(): void {
       this.loadAccount();
   }
@@ -33,7 +33,9 @@ export class AccountComponent implements OnInit {
           this.account = data;
       });
   }
-
+  addOuEditarCarro(event: any) {
+    // Handle the event here, implement the method logic.
+}
 
   editAccount(accountId: number) {
       console.log(`Edit Account with ID: ${accountId}`);
