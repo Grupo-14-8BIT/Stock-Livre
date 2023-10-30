@@ -10,7 +10,6 @@ import { Injectable } from '@angular/core';
   templateUrl: './addsku.component.html',
   styleUrls: ['./addsku.component.scss']
 })
-
 @Injectable()
 export class AddskuComponent {
 
@@ -26,7 +25,7 @@ export class AddskuComponent {
   constructor(private skuService: SkuService) { }
 
   EditSku(): void {
-    this.skuService.update(this.sku).subscribe({
+    this.skuService.update(this.sku.id, this.sku).subscribe({
       next: sku => {
         this.retorno.emit(sku);
       },
