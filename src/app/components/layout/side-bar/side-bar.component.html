@@ -56,7 +56,7 @@
     </symbol>
   </svg>
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh;">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark collapsed" style="width: 280px; height: 100vh;">
     <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <img src="https://raw.githubusercontent.com/Grupo-14-8BIT/Img/master/Background/Stock-Livre-grey-logo.png" alt="Stock-Livre Logo" width="60" class="me-2">
       <span class="fs-4">Stock-Livre</span>
@@ -66,34 +66,37 @@
     <li class="nav-item">
         <a [routerLink]="['/home']" class="nav-link" [ngClass]="{'active': router.url === '/'}">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-            Home
+            <span>Home</span>
         </a>
     </li>
     <li>
       <a [routerLink]="['/account']" class="nav-link text-white">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-        Account
+        <span>Account</span>
       </a>
   </li>
     <li>
         <a [routerLink]="['/']" class="nav-link text-white">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-            Dashboard
+            <span>Dashboard</span>
         </a>
     </li>
     <li>
-        <a [routerLink]="['/sku']" class="nav-link text-white">SKU</a>
+        <a [routerLink]="['/sku']" class="nav-link text-white">
+          <img src="https://raw.githubusercontent.com/Grupo-14-8BIT/Img/master/Background/image-removebg-preview%20(12)%204.png" alt="" width="25">
+          <span>SKU</span>
+        </a>
     </li>
     <li>
         <a [routerLink]="['/announcement']" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Announcement
+          <span>Announcement</span>
         </a>
     </li>
     <li>
       <a [routerLink]="['/stock']" class="nav-link text-white">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-        Stock
+        <span>Stock</span>
       </a>
   </li>
     <li>
