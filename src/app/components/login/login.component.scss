@@ -1,14 +1,63 @@
+/* Variáveis */
+$primary-color: #04AA6D;
+$secondary-color: #ffffff;
 
+/* Conteúdo */
 .content-wrapper {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  // background-image: url('./image.jpg');
+  // background-size: cover;
+  // background-position: center;
+}
+
+// /* Barra lateral */
+// app-side-bar {
+//   width: 20%;
+//   background-color: $primary-color;
+//   color: $secondary-color;
+// }
+
+/* Conteúdo principal */
+.main-content {
+
+  width: 60%;
+  padding: 20px;
+  background-color: rgba($secondary-color, 0.8);
+  border-radius: 10px;
+
+  p {
+    margin-bottom: 20px;
+    font-size: 20px;
   }
-  
-  .app-side-bar {
-    flex: 0 0 1.5rem;
+}
+.col-lg-4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Formulário de login */
+form {
+  margin-top: 20px;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    margin-bottom: 10px;
   }
-  
-  .main-content {
-    flex: 1;  
-    overflow: auto;
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: $primary-color;
+    color: $secondary-color;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
-  
+}
