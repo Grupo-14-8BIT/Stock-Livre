@@ -1,63 +1,41 @@
-/* Variáveis */
-$primary-color: #04AA6D;
-$secondary-color: #ffffff;
-
-/* Conteúdo */
-.content-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  // background-image: url('./image.jpg');
-  // background-size: cover;
-  // background-position: center;
+.container {
+  width: 400px;
+  margin: 0 auto;
 }
 
-// /* Barra lateral */
-// app-side-bar {
-//   width: 20%;
-//   background-color: $primary-color;
-//   color: $secondary-color;
-// }
-
-/* Conteúdo principal */
-.main-content {
-
-  width: 60%;
-  padding: 20px;
-  background-color: rgba($secondary-color, 0.8);
-  border-radius: 10px;
-
-  p {
-    margin-bottom: 20px;
-    font-size: 20px;
-  }
-}
-.col-lg-4{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-/* Formulário de login */
 form {
-  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid $primary-color;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: $primary-color;
-    color: $secondary-color;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0069d9;
 }

@@ -15,7 +15,7 @@ export class LoginComponent {
   }
   roteador = inject(Router);
   logar() {
-    if (this.login.login == 'admin' && this.login.senha == 'admin')
+    if (this.login.email == 'admin' && this.login.senha == 'admin')
       this.roteador.navigate(['admin/stock']);
     else
       alert('Login ou senha incorretos!');
