@@ -6,18 +6,16 @@
 <body>
   <div class="container">
     <h1>Login</h1>
-    <form (ngSubmit)="logar()">
+    <form id="logar" (ngSubmit)="logar()">
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="email" class="form-control" id="email" placeholder="E-mail" [(ngModel)]="login.email">
+        <input type="email" class="form-control" id="email" placeholder="E-mail" [(ngModel)]="login.email"[ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group">
         <label for="senha">Senha</label>
-        <input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="login.senha">
+        <input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="login.senha"[ngModelOptions]="{standalone: true}">
       </div>
-      <button [routerLink]="['/account']"  type="submit" class="btn btn-primary">Logar</button>
-    
-   
+      <button [routerLink]="['/account']" type="submit" for="logar" class="btn btn-primary">Logar</button>
     </form>
   </div>
 </body>

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  API: string = 'http://localhost:8081/api/v1/auth/login';
+  API: string = 'http://localhost:8081/api/v1/auth/authenticate';
   http = inject(HttpClient);
 
   constructor() {}
@@ -26,8 +26,10 @@ export class LoginService {
     const params = new HttpParams()
       .set('email', email)
       .set('password', password);
+console.log("ashahsahshashha");
 
     return this.http.post<boolean>(
+
       'http://localhost:8081/api/v1/auth/authenticate',
       params
     );

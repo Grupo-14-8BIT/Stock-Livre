@@ -3,6 +3,7 @@ import { Login } from './login';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,8 +12,10 @@ import { LoginService } from './login.service';
 export class LoginComponent {
   @Input() login: Login = new Login();
   @Output() retorno = new EventEmitter<Login>();
+
   public roteador: Router;
   loginService: LoginService;
+ 
 
   constructor(loginService: LoginService, router: Router) {
     this.loginService = loginService;
@@ -20,6 +23,8 @@ export class LoginComponent {
   }
 
   logar() {
+    console.log("teste12345");
+    
     if (!this.login.email || !this.login.senha) {
       alert('E-mail e senha são obrigatórios!');
       return;
