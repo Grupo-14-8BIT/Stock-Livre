@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Login } from './login';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -10,22 +11,35 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   @Input() login: Login = new Login();
   @Output() retorno = new EventEmitter<Login>();
+  public roteador: Router;
+  loginService: LoginService;
 
-  ngOnInit(): void {
+  constructor(loginService: LoginService, router: Router) {
+    this.loginService = loginService;
+    this.roteador = router;
   }
-  roteador = inject(Router);
+
   logar() {
-    // Check if the email and password input fields are empty
     if (!this.login.email || !this.login.senha) {
       alert('E-mail e senha são obrigatórios!');
       return;
     }
 
-    // Navigate to the home page if the email and password are correct
-    if (this.login.email == 'as' && this.login.senha == 'ds') {
-      this.roteador.navigate(['/home']);
-    } else {
-      alert('Login ou senha incorretos!');
-    }
+    // Call the loginService.fetch() method to authenticate the user
+    this.loginService.fetch(this.login.email as string, this.login.senha as string).subscribe((loginResponse: Login) => {
+      // If the login was successful, navigate to the home page
+      if (loginResponse) {
+        // Make a request to the sing-up back end to validate the login
+        this.loginService.validateLogin(loginResponse.email as string, loginResponse.senha as string).subscribe((isLoginValid: boolean) => {
+          if (isLoginValid) {
+            this.roteador.navigate(['/home']);
+          } else {
+            alert('Login ou senha incorretos!');
+          }
+        });
+      } else {
+        alert('Login ou senha incorretos!');
+      }
+    });
   }
 }

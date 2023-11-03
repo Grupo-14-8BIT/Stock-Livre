@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  API: string = 'http://localhost:8081/api/v1/auth/authenticate';
+  API: string = 'http://localhost:8081/api/v1/auth/login';
   http = inject(HttpClient);
 
   constructor() {}
@@ -19,6 +19,18 @@ export class LoginService {
       .set('password', password);
 
     return this.http.post<Login>(this.API, params);
+  }
+
+  public validateLogin(email: string, password: string): Observable<boolean> {
+    // Make a request to the sing-up back end to validate the login
+    const params = new HttpParams()
+      .set('email', email)
+      .set('password', password);
+
+    return this.http.post<boolean>(
+      'http://localhost:8081/api/v1/auth/authenticate',
+      params
+    );
   }
 
 }
