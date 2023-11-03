@@ -15,6 +15,7 @@ import { HomePageComponent } from './components/home-page/home-page/home-page.co
 import { HttpClientModule } from '@angular/common/http';
 import { AddAccountComponent } from './components/layout/add-account/add-account.component';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     HomePageComponent,
     AddAccountComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
