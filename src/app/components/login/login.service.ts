@@ -8,13 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  API: string = 'http://localhost:8081/api/v1/admin/login';
+  API: string = 'http://localhost:8081/api/v1/auth/authenticate';
   http = inject(HttpClient);
 
   constructor() {}
 
-  public fetch(): Observable<Login[]>{
-    return this.http.get<Login[]>(this.API+'/fetch');
+  public fetch(email: string, password: string): Observable<Login> {
+    const params = new HttpParams()
+      .set('email', email)
+      .set('password', password);
+
+    return this.http.post<Login>(this.API, params);
   }
 
 }

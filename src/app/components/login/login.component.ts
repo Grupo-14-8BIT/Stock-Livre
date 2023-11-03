@@ -15,9 +15,17 @@ export class LoginComponent {
   }
   roteador = inject(Router);
   logar() {
-    if (this.login.email == 'admin' && this.login.senha == 'admin')
-      this.roteador.navigate(['admin/stock']);
-    else
+    // Check if the email and password input fields are empty
+    if (!this.login.email || !this.login.senha) {
+      alert('E-mail e senha são obrigatórios!');
+      return;
+    }
+
+    // Navigate to the home page if the email and password are correct
+    if (this.login.email == 'as' && this.login.senha == 'ds') {
+      this.roteador.navigate(['/home']);
+    } else {
       alert('Login ou senha incorretos!');
+    }
   }
 }

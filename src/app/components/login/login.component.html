@@ -15,7 +15,9 @@
         <label for="senha">Senha</label>
         <input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="login.senha">
       </div>
-      <button type="submit" class="btn btn-primary">Logar</button>
+      <button [routerLink]="['/account']"  type="submit" class="btn btn-primary">Logar</button>
+    
+   
     </form>
   </div>
 </body>

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class SingUpService {
 
-  API: string = 'http://localhost:8081/api/v1/admin/singup';
+  API: string = 'http://localhost:8081/api/v1/auth/register';
   http: HttpClient;
 
   constructor(httpClient: HttpClient) {

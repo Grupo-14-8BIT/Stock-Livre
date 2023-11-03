@@ -6,8 +6,9 @@
       <input type="email" class="form-control" placeholder="E-mail" [(ngModel)]="singup.email">
       <input type="password" class="form-control" placeholder="Password" [(ngModel)]="singup.password">
       
-      <button type="submit" class="btn btn-primary">Registrar</button>
-      <!-- <app-sing-up [singup]="singup" (retorno)="retorno.emit($event)"></app-sing-up> -->
+      <button type="submit" class="btn btn-primary" (click)="saveSingUp()">Registrar</button>
+
+ <!-- <app-sing-up [singup]="singup" (retorno)="retorno.emit($event)"></app-sing-up>   -->
     </form>
   </div>
   
