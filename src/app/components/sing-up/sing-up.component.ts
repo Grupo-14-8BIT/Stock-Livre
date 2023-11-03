@@ -16,6 +16,8 @@ export class SingUpComponent {
 
   onSubmit() {
     if (this.singup.firstname && this.singup.lastname && this.singup.email && this.singup.password) {
+      console.log(this.singup);
+      console.log("onsubmit chamada funcionando");
       // Send the registered data to the backend
       this.singUpService.saveSingUp(this.singup).subscribe(() => {
         // Once the data has been saved, redirect to the login page
@@ -24,11 +26,5 @@ export class SingUpComponent {
     }
   }
 
-  saveSingUp() {
-    // Call the saveSingUp() method from the SingUpService
-    this.singUpService.saveSingUp(this.singup).subscribe(() => {
-      // Once the data has been saved, redirect to the login page
-      this.router.navigate(['/login']);
-    });
-  }
+
 }

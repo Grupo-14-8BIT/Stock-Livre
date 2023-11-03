@@ -4,5 +4,5 @@ export class SingUp {
     lastname!: String;
     email!: String;
     password!: String;
-    // role!: Role;
+     role: String = "ADMIN";
 }
