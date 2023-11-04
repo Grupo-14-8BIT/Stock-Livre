@@ -12,10 +12,11 @@ import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { SideBarComponent } from './components/layout/side-bar/side-bar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AddAccountComponent } from './components/layout/add-account/add-account.component';
+import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,17 +29,18 @@ import { HttpClientModule } from '@angular/common/http';
     SingUpComponent,
     SideBarComponent,
     FooterComponent,
-    HomePageComponent
+    HomePageComponent,
+    AddAccountComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
+    HttpClientModule,
     FormsModule,
-    HttpClientModule
+    NgbModule,
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
