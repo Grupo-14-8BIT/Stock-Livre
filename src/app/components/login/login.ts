@@ -1,6 +1,11 @@
 export class Login {
-    id!: number;
-    email!: String;
-    senha!: String;
+    id?: number;
+    email?: string;
+    senha?: string;
   
+}
+export interface LoginResponse{
+    id: number;
+  email: string;
+  senha: string;
 }

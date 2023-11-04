@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Login } from './login';
+import { Login, LoginResponse } from './login';
 import { Observable } from 'rxjs';
+import { SingUp } from '../sing-up/sing-up';
 
 @Injectable({
   providedIn: 'root'
@@ -13,26 +14,22 @@ export class LoginService {
 
   constructor() {}
 
-  public fetch(email: string, password: string): Observable<Login> {
+  public async fetch(email: string, password: string): Promise<any> {
     const params = new HttpParams()
       .set('email', email)
       .set('password', password);
-
-    return this.http.post<Login>(this.API, params);
+    return await this.http.post(this.API, params).toPromise();
   }
 
-  public validateLogin(email: string, password: string): Observable<boolean> {
-    // Make a request to the sing-up back end to validate the login
-    const params = new HttpParams()
-      .set('email', email)
-      .set('password', password);
-console.log("ashahsahshashha");
+  public async validateLogin(email: string, password: string): Promise<boolean> {
+    const loginResponse: LoginResponse = await this.fetch(email, password) as LoginResponse;
 
-    return this.http.post<boolean>(
-
-      'http://localhost:8081/api/v1/auth/authenticate',
-      params
-    );
+    // Check if the login is valid
+    if (loginResponse.id && loginResponse.email && loginResponse.senha) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
