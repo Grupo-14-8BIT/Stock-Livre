@@ -7,17 +7,17 @@
                 <Form (ngSubmit)="EditSku()">
                     <li>
                         <label>PRODUTO</label>
-                        <input type="text" [(ngModel)]="sku.nome" [(ngModel)]="inputValue1" name="nome" class="form-control inp"
+                        <input type="text" [(ngModel)]="sku.nome" name="nome" class="form-control inp"
                             aria-describedby="inputGroup-sizing-default" required>
                     </li>
                     <li>
                         <label>SKU/CODE</label>
-                        <input type="text" [(ngModel)]="sku.sku" [(ngModel)]="inputValue2" name="sku" class="form-control inp"
+                        <input type="text" [(ngModel)]="sku.sku" name="sku" class="form-control inp"
                             aria-describedby="inputGroup-sizing-default" required>
                     </li>
                     <li>
                         <label>DESCRIPTION</label>
-                        <input type="text" [(ngModel)]="sku.descricao" [(ngModel)]="inputValue3" class="form-control inp" name="description"
+                          <input type="text" [(ngModel)]="sku.descricao" class="form-control inp" name="description"
                             aria-describedby="inputGroup-sizing-default" required>
                     </li>
                 </Form>
@@ -36,9 +36,14 @@
         <button type="submit" class="btn btn-primary"
             style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1rem;">
             EDIT</button>
+
         <button type="button" class="btn btn-danger" (click)="clearInputs()"
             style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;">
             CANCEL</button>
+
+            <button type="button" class="btn btn-danger" (click)="close()"
+            style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;">
+            FECHAR</button>
     </div>
 
 </div>

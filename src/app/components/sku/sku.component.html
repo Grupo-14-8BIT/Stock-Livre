@@ -48,7 +48,7 @@
         </div>
 
         <ng-container *ngIf="visible" >
-            <app-addsku ></app-addsku>
+            <app-addsku [sku]="objetoSelecionadoParaEdicao" (retorno)="tratarEvent($event)"></app-addsku>
         </ng-container>
 
         <div class="my-stock-container">
@@ -68,13 +68,13 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                         <tr *ngFor="let sku of sku ; let i = index">
+                         <tr *ngFor="let sku of listaSku">
                             <th scope="row"> {{ sku.id }} </th>
                             <td>{{ sku.foto }}</td>
                             <td>{{ sku.nome }}</td>
                             <td>{{ sku.sku }}</td>
                             <td>{{ sku.descricao }}</td>
-                            <td><button type="button"  (click)="onclick()"  (click)="update(i, sku)" class="btn btn-success">Select</button></td>
+                            <td><button type="button" (click)="update(sku)" class="btn btn-success">Selectaa</button></td>
                         </tr> 
                         <tr>
                             <th scope="row">1</th>
@@ -84,7 +84,7 @@
                             <td>The Acer Spin 5 is a lightweight, all-aluminum, two-in-one laptop 
                                 with a high-resolution, 14-inch display powered by speedy 12th-gen 
                                 Intel silicon.</td>
-                                <td><button type="button"  (click)="onclick()" class="btn btn-success">Select</button></td>
+                                <td><button type="button" (click)="update(skuTeste)" class="btn btn-success">Select</button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -25,6 +25,7 @@ export class AddskuComponent {
   constructor(private skuService: SkuService) { }
 
   EditSku(): void {
+    
     this.skuService.update(this.sku.id, this.sku).subscribe({
       next: sku => {
         this.retorno.emit(sku);
@@ -37,10 +38,14 @@ export class AddskuComponent {
   }
   
   clearInputs() {
-    this.inputValue1 = '';
-    this.inputValue2 = '';
-    this.inputValue3 = ''; // Clear the first input
+    this.sku.descricao = '';
+    this.sku.nome = '';
+    this.sku.sku = ''; // Clear the first input
     // Add more lines to clear additional inputs as needed
+  }
+
+  close(){
+    this.retorno.emit(this.sku);
   }
 }
 

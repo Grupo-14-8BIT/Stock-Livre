@@ -11,7 +11,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 
 export class SkuComponent implements OnInit {
-  sku: Sku[]=[];
+  listaSku: Sku[]=[];
+
+  skuTeste: Sku = new Sku();
   
   objetoSelecionadoParaEdicao: Sku = new Sku();
   indiceSelecionadoParaEdicao!: number;
@@ -19,7 +21,12 @@ export class SkuComponent implements OnInit {
   visible:boolean = false;
   
 
-  constructor(private skuService : SkuService){}
+  constructor(private skuService : SkuService){
+    this.skuTeste.descricao = `Description`;
+    this.skuTeste.id = 9;
+    this.skuTeste.nome = `iPhone`;
+    this.skuTeste.sku = `doasfjlkdfj;adlsfas`;
+  }
 
     ngOnInit() {
       this.fetch();
@@ -28,7 +35,7 @@ export class SkuComponent implements OnInit {
      fetch(){
       this.skuService.fetch().subscribe({
         next: sku => { // QUANDO DÁ CERTO
-          this.sku = sku;
+          this.listaSku = sku;
         },
         error: (error: HttpErrorResponse) => {
           alert(error.message);
@@ -36,13 +43,17 @@ export class SkuComponent implements OnInit {
       });
     }
 
-  onclick(){
+  
+
+  update(sku:Sku) {
+
     this.visible = !this.visible;
-  }
 
-  update(id:number,sku:Sku) {
     this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
-    this.indiceSelecionadoParaEdicao = id;
   }
 
+  tratarEvent(evento: any){
+    this.visible = !this.visible;
+
+  }
 }
