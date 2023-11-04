@@ -1,14 +1,41 @@
+.container {
+  width: 400px;
+  margin: 0 auto;
+}
 
-.content-wrapper {
-    display: flex;
-  }
-  
-  .app-side-bar {
-    flex: 0 0 1.5rem;
-  }
-  
-  .main-content {
-    flex: 1;  
-    overflow: auto;
-  }
-  
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0069d9;
+}

@@ -1,7 +1,38 @@
-<div class="content-wrapper">
-    <app-side-bar></app-side-bar>
-    <div class="main-content">
-        <p>Login </p>
-    </div>
+<!-- <html lang="en">
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form id="logar" (ngSubmit)="logar()">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" placeholder="E-mail" [(ngModel)]="login.email"[ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="login.senha"[ngModelOptions]="{standalone: true}">
+      </div>
+      <button [routerLink]="['/account']" type="submit" for="logar" class="btn btn-primary">Logar</button>
+    </form>
   </div>
+</body>
+</html> -->
+
+<div class="container">
+  <h1>Logar</h1>
+  <form id="logar" (ngSubmit)="logar()">
+      
+
+    <input type="email" class="form-control" id="email" placeholder="E-mail" [(ngModel)]="login.email"[ngModelOptions]="{standalone: true}">
+    <input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="login.senha"[ngModelOptions]="{standalone: true}">
+
+     <button  type="submit" for = "logar" class="btn btn-primary">logar</button>
+
+  </form>
   
+   
+
+</div>

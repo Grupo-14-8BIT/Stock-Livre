@@ -19,7 +19,6 @@ const routes: Routes = [
   { path: "stock", component:  StockComponent},
   { path: "home", component:  HomePageComponent},
   { path: "dashboard", component:  DashboardComponent},
-
 ];
 
 @NgModule({

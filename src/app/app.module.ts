@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddAccountComponent } from './components/layout/add-account/add-account.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
