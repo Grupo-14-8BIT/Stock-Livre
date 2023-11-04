@@ -8,40 +8,36 @@ import { Account } from './account';
     styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  account: any;
-  accounts: Account[] = [
-    {
-        id: 1,
-        nome: 'Michael Holz',
-        contaid: 12345,
-        code: 'someCode',
-        access_token: 'someAccessToken',
-        refresh_token: 'someRefreshToken',
-        expires: new Date('04/10/2013'),
-        usuario: {}
+    accounts: Account[] = [];
+
+    carroSelecionadoParaEdicao: any;
+    constructor(private accountService: AccountService) { }
+    showAddAccount: boolean = false;
+
+    ngOnInit(): void {
+        this.loadAllAccounts();
     }
-  ];
-  carroSelecionadoParaEdicao: any;
-  constructor(private accountService: AccountService) { }
-  showAddAccount: boolean = false;
-  ngOnInit(): void {
-      this.loadAccount();
-  }
 
-  loadAccount(): void {
-      this.accountService.getAccountById(1).subscribe(data => {
-          this.account = data;
-      });
-  }
-  addOuEditarCarro(event: any) {
-    // Handle the event here, implement the method logic.
-}
+    loadAllAccounts(): void {
+        
+        this.accountService.getAllAccounts().subscribe(data => {
+            this.accounts = data as Account[];
+        }, error => {
+            console.error('Error fetching all accounts:', error);
+        });
+        console.log(this.accounts);
+        console.log("I will be back");
+    }
 
-  editAccount(accountId: number) {
-      console.log(`Edit Account with ID: ${accountId}`);
-  }
+    addOuEditarCarro(event: any) {
+        console.log("teste");
+    }
 
-  deleteAccount(accountId: number) {
-      console.log(`Delete Account with ID: ${accountId}`);
-  }
+    editAccount(accountId: number) {
+        console.log(`Edit Account with ID: ${accountId}`);
+    }
+
+    deleteAccount(accountId: number) {
+        console.log(`Delete Account with ID: ${accountId}`);
+    }
 }
