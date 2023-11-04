@@ -10,7 +10,7 @@ export class AccountService {
     constructor(private httpClient: HttpClient) { }
     
     getAllAccounts() {
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTM0NUBnbWFpbC5jb20iLCJpYXQiOjE2OTkxMjA5MjQsImV4cCI6MTY5OTIwNzMyNH0.Y3aZvT6D-D2hC9OGCzvfRH8AmDrsaPDEpA_KXRlQWJs';
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTY1NkBnbWFpbC5jb20iLCJpYXQiOjE2OTkxMzc4MzgsImV4cCI6MTY5OTIyNDIzOH0.E-FSENQz-aiBWA3hKob-rCygY0Lt2HLml8689UvcE_E';
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
         console.log({ headers: headers });
         
