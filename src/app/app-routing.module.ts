@@ -8,6 +8,7 @@ import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { StockComponent } from './components/stock/stock.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SellComponent } from './components/sell/sell.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "entrar", pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "stock", component:  StockComponent},
   { path: "home", component:  HomePageComponent},
   { path: "dashboard", component:  DashboardComponent},
+  { path: "sell", component:  SellComponent},
 ];
 
 @NgModule({

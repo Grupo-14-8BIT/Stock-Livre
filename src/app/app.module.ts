@@ -17,6 +17,7 @@ import { AddAccountComponent } from './components/layout/add-account/add-account
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SellComponent } from './components/sell/sell.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomePageComponent,
     AddAccountComponent,
     DashboardComponent,
+    SellComponent,
   ],
   imports: [
     BrowserModule,
