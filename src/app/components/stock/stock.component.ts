@@ -10,38 +10,51 @@ import { StockService } from './stock.service';
 export class StockComponent implements OnInit {
   stock: Stock[] = [];
 
-  carroSelecionadoParaEdicao: any;
-  constructor(private stockService: StockService) { }
+  // selectedStockForEdition: Stock;
   showAddStock: boolean = false;
 
+  constructor(private stockService: StockService) { }
+
   ngOnInit(): void {
-      this.loadAllStock();
+    this.loadAllStock();
   }
 
-  loadAllStock(): void {
-      
-      this.stockService.getAllStock().subscribe(data => {
-          this.stock = data as Stock[];
-      }, error => {
-          console.error('Error fetching all accounts:', error);
-      });
-      console.log(this.stock);
-      console.log("I will be back");
+  async loadAllStock(): Promise<void> {
+    this.stockService.getAllStock().subscribe(data => {
+      this.stock = data as Stock[];
+    }, error => {
+      console.error('Error fetching all stocks:', error);
+    });
   }
 
-  addOuEditarCarro(event: any) {
-      console.log("teste");
+  async addNewStock(stock: Stock): Promise<void> {
+    // Crie um objeto FormData para armazenar os dados do novo estoque.
+    const formData = new FormData();
+    formData.append('nome', stock.nome);
+    // formData.append('conta_id', stock.conta_id);
+    formData.append('usuario', stock.usuario);
+
+    // Faça uma solicitação POST para a API de backend para adicionar o novo estoque.
+    const response = await fetch('/api/stocks', {
+      method: 'POST',
+      body: formData
+    });
+
+    // Verifique se a solicitação foi bem-sucedida.
+    if (response.status === 201) {
+      // O novo estoque foi adicionado com sucesso.
+      // Atualize a tabela de estoques para refletir a mudança.
+    } else {
+      // Ocorreu um erro ao adicionar o novo estoque.
+      // Exiba uma mensagem de erro para o usuário.
+    }
   }
 
-  editStock(stockId: number) {
-      console.log(`Edit Stock with ID: ${stockId}`);
+  editStock(stock: Stock): void {
+    console.log(`Edit Stock with ID: ${stock.id}`);
   }
 
-  deleteAccount(stockId: number) {
-      console.log(`Delete Stock with ID: ${stockId}`);
+  deleteStock(stock: Stock): void {
+    console.log(`Delete Stock with ID: ${stock.id}`);
   }
 }
-function ngOnInit() {
-  throw new Error('Function not implemented.');
-}
-

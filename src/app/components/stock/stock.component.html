@@ -17,12 +17,11 @@
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-5">
-                                <h2>User <b>Management</b></h2>
+                                <h2>Stock </h2>
                             </div>
                             <div class="col-sm-7">
-                              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addStockModal">
-                                <i class="material-icons">&#xE147;</i> <span>Add Stock</span>
-                            </button>                            
+                                <button type="button" class="btn btn-primary" (click)="addNewStock(stock)">Add Stock</button>
+                                                    
                                 <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
                             </div>
                         </div>
