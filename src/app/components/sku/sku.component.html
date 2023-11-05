@@ -1,7 +1,97 @@
 <div class="content-wrapper">
+
     <app-side-bar></app-side-bar>
+
     <div class="main-content">
-        <p>Sku</p>
+
+        <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="#">Stock-Livre</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll gap-2"
+                        style="--bs-scroll-height: 100px;">
+
+                        <li class="nav-item">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                                    checked>
+                                <label class="btn btn-outline-light" for="btnradio1">NOME</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <label class="btn btn-outline-light" for="btnradio2">SKU</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                <label class="btn btn-outline-light" for="btnradio3">DATA</label>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+
+            </div>
+        </nav>
+
+
+        <div class="add-row gap-3">
+            <h2>WAREHOUSE ADMINISTRATION</h2>
+        </div>
+
+        <ng-container *ngIf="visible" >
+            <app-addsku [sku]="objetoSelecionadoParaEdicao" (retorno)="tratarEvent($event)"></app-addsku>
+        </ng-container>
+
+        <div class="my-stock-container">
+            <div class="mystock">
+                <h2>My Stock</h2>
+            </div>
+            <div class="table table-dark table-striped">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">SKU</th>   
+                            <th scope="col">Descricao</th>   
+                            <th scope="col">editar</th>          
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                         <tr *ngFor="let sku of listaSku">
+                            <th scope="row"> {{ sku.id }} </th>
+                            <td>{{ sku.foto }}</td>
+                            <td>{{ sku.nome }}</td>
+                            <td>{{ sku.sku }}</td>
+                            <td>{{ sku.descricao }}</td>
+                            <td><button type="button" (click)="update(sku)" class="btn btn-success">Select</button></td>
+                        </tr> 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td>Acer Spin 5</td>
+                            <td>hJ3k2trG16mpLf7z</td>
+                            <td>The Acer Spin 5 is a lightweight, all-aluminum, two-in-one laptop 
+                                with a high-resolution, 14-inch display powered by speedy 12th-gen 
+                                Intel silicon.</td>
+                                <td><button type="button" (click)="update(skuTeste)" class="btn btn-success">Select</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
     </div>
-  </div>
-  
+
+</div>
