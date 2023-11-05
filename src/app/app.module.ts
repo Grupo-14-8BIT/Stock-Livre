@@ -20,7 +20,6 @@ import { SellComponent } from './components/sell/sell.component';
 import { AddskuComponent } from './components/sku/addSku/addsku.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
