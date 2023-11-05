@@ -21,7 +21,7 @@ export class AccountComponent implements OnInit {
     loadAllAccounts(): void {
         
         this.accountService.getAllAccounts().subscribe(data => {
-            this.accounts = data as Account[];
+            // this.accounts = data as Account[];
         }, error => {
             console.error('Error fetching all accounts:', error);
         });

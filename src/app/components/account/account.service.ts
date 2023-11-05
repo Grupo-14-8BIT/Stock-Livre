@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppComponent } from 'src/app/app.component';
+import eventService from 'src/app/event.service';
 
 @Injectable({
     providedIn: 'root'
@@ -7,14 +9,42 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AccountService {
     private baseURL = 'http://localhost:8082/api/v1/admin/conta';
 
-    constructor(private httpClient: HttpClient) { }
+    token! : string;
+    
+
+    constructor(private httpClient: HttpClient) {
+
+        
+    eventService.listen("usuario Logou", (logou) => {
+        
+        this.token = logou;
+  
+  
+      })
+  
+
+     }
+
+    private getStandardOptions() : any {
+        return {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+          })
+        };
+      }
+    
     
     getAllAccounts() {
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTY1NkBnbWFpbC5jb20iLCJpYXQiOjE2OTkxMzc4MzgsImV4cCI6MTY5OTIyNDIzOH0.E-FSENQz-aiBWA3hKob-rCygY0Lt2HLml8689UvcE_E';
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        console.log({ headers: headers });
-        
-        return this.httpClient.get(`${this.baseURL}/getAll`, { headers: headers });
+
+        let options = this.getStandardOptions();
+
+        // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTY1NkBnbWFpbC5jb20iLCJpYXQiOjE2OTkxMzc4MzgsImV4cCI6MTY5OTIyNDIzOH0.E-FSENQz-aiBWA3hKob-rCygY0Lt2HLml8689UvcE_E';
+console.log(this.token);
+
+        options.headers = options.headers.set( 'Authorization', this.token)
+
+        // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);      
+        return this.httpClient.get(`${this.baseURL}/getAll`, options);
     }
     
     getAccountById(id: number) {
