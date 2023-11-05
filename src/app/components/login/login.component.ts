@@ -23,7 +23,7 @@ export class LoginComponent {
   }
 
   async logar() {
-    console.log('teste12345');
+ 
 
     if (!this.login.email || !this.login.senha) {
       alert('E-mail e senha são obrigatórios!');

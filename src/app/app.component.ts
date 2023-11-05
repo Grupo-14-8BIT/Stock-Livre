@@ -14,17 +14,7 @@ export class AppComponent {
 
 
 
-  constructor() {
-
-    eventService.listen("usuario Logou", (logou) => {
-
-      console.log("Usuario logou : " + logou)
-      // token = acess token 
-
-
-    })
-
-  }
+ 
 
 
 
