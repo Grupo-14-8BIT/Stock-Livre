@@ -1,0 +1,14 @@
+
+.content-wrapper {
+    display: flex;
+  }
+  
+  .app-side-bar {
+    flex: 0 0 1.5rem;
+  }
+  
+  .main-content {
+    flex: 1;  
+    overflow: auto;
+  }
+  

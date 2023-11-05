@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 declare var bootstrap: any; 
 
@@ -8,7 +8,8 @@ declare var bootstrap: any;
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements AfterViewInit {
-  constructor(public router: Router) { }
+  constructor(public router: Router, private elRef: ElementRef) { }
+
   ngAfterViewInit(): void {
     this.initializeTooltips();
   }
@@ -18,5 +19,15 @@ export class SideBarComponent implements AfterViewInit {
     tooltipTriggerList.forEach((tooltipTriggerEl: Element) => {
       new bootstrap.Tooltip(tooltipTriggerEl)
     });
+  }
+
+  @HostListener('mouseover', ['$event'])
+  expandSidebar(event: MouseEvent) {
+    this.elRef.nativeElement.querySelector('.collapsed').classList.remove('collapsed');
+  }
+
+  @HostListener('mouseout', ['$event'])
+  collapseSidebar(event: MouseEvent) {
+    this.elRef.nativeElement.querySelector('.d-flex').classList.add('collapsed');
   }
 }

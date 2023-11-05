@@ -11,11 +11,13 @@ import { LoginComponent } from './components/login/login.component';
 import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { SideBarComponent } from './components/layout/side-bar/side-bar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
-import { HomePageComponent } from './components/home-page/home-page/home-page.component';
-import { AddskuComponent } from './components/sku/addSku/addsku.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddAccountComponent } from './components/layout/add-account/add-account.component';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SellComponent } from './components/sell/sell.component';
+import { AddskuComponent } from './components/sku/addSku/addsku.component';
 
 
 @NgModule({
@@ -30,13 +32,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SideBarComponent,
     FooterComponent,
     HomePageComponent,
+    AddAccountComponent,
+    DashboardComponent,
+    SellComponent,
     AddskuComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
+    FormsModule,
+    NgbModule,
     NgbModule
   ],
   providers: [],
