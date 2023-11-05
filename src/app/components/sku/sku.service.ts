@@ -19,8 +19,8 @@ export class SkuService {
   public mudarSkuAnuncio(): Observable<Sku[]>{
     return this.http.get<Sku[]>(this.API+'/change');
   }
-  public update(id:number, sku:Sku): Observable<Sku>{
-    return this.http.put<Sku>(this.API+'/update?id='+ [id] ,sku);
+  public update(sku:Sku): Observable<Sku>{
+    return this.http.put<Sku>(this.API+'/update?sku='+ [sku] ,sku);
   }
 
 }

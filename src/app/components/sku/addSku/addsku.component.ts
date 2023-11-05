@@ -26,7 +26,7 @@ export class AddskuComponent {
 
   EditSku(): void {
     
-    this.skuService.update(this.sku.id, this.sku).subscribe({
+    this.skuService.update(this.sku).subscribe({
       next: sku => {
         this.retorno.emit(sku);
       },
@@ -48,4 +48,3 @@ export class AddskuComponent {
     this.retorno.emit(this.sku);
   }
 }
-
