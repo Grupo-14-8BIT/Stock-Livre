@@ -11,21 +11,15 @@ export class AppComponent {
   title = 'Stock-Livre'
   token! : string;
 
-
-
-
   constructor() {
-
-    eventService.listen("usuario Logou", (logou) => {
-
-      console.log("Usuario logou : " + logou)
-      // token = acess token 
-
-
-    })
-
+    eventService.listen("usuario Logou", (logou: string) => {  
+      const logouObj = JSON.parse(logou);
+  
+      this.token = logouObj.access_token;
+      console.log("Access Token set: ", this.token);
+      console.log(this.token);
+      
+    });
   }
-
-
-
+  
 }
