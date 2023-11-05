@@ -1,7 +1,17 @@
-<div class="content-wrapper">
-    <app-side-bar></app-side-bar>
-    <div class="main-content">
-        <p>Login </p>
-    </div>
-  </div>
-  
+<div class="container">
+  <h1>Logar</h1>
+
+
+  <form id="logar" (ngSubmit)="logar()">
+      
+
+    <input type="email" class="form-control" id="email" placeholder="E-mail" [(ngModel)]="login.email"[ngModelOptions]="{standalone: true}">
+    <input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="login.senha"[ngModelOptions]="{standalone: true}">
+
+     <button  type="submit" for = "logar" class="btn btn-primary">logar</button>
+
+  </form>
+
+   <p>dont have an account? <a href="/singup">sing up here</a></p>
+
+</div>
