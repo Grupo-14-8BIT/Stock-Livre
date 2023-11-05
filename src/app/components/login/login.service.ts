@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Login, LoginResponse } from './login';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { SingUp } from '../sing-up/sing-up';
 
 @Injectable({
@@ -9,27 +9,44 @@ import { SingUp } from '../sing-up/sing-up';
 })
 export class LoginService {
 
-  API: string = 'http://localhost:8081/api/v1/auth/authenticate';
+  API: string = 'http://localhost:8082/api/v1/auth/authenticate';
   http = inject(HttpClient);
 
   constructor() {}
 
-  public async fetch(email: string, password: string): Promise<any> {
-    const params = new HttpParams()
-      .set('email', email)
-      .set('password', password);
-    return await this.http.post(this.API, params).toPromise();
+  
+  private getStandardOptions() : any {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
   }
 
-  public async validateLogin(email: string, password: string): Promise<boolean> {
-    const loginResponse: LoginResponse = await this.fetch(email, password) as LoginResponse;
 
-    // Check if the login is valid
-    if (loginResponse.id && loginResponse.email && loginResponse.senha) {
-      return true;
-    } else {
-      return false;
-    }
+  public async fetch(email: string, password: string): Promise<Observable<any>> {
+    let options = this.getStandardOptions();
+    
+    const params = {email : email, password : password}; 
+    let login = await this.http.post(this.API, JSON.stringify(params), options);
+
+    return login;
+ 
+
+
   }
+
+  // public async validateLogin(email: string, password: string): Promise<boolean> {
+  //   const loginResponse: LoginResponse = await this.fetch(email, password) as LoginResponse;
+
+  //   // Check if the login is valid
+  //   if (loginResponse.id && loginResponse.email && loginResponse.senha) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
 }
+
+

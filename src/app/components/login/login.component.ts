@@ -29,15 +29,15 @@ export class LoginComponent {
     }
 
     // Call the loginService.fetch() method to authenticate the user
-    const loginResponse = await this.loginService.fetch(this.login.email, this.login.senha);
+    (await this.loginService.fetch(this.login.email, this.login.senha)).subscribe( data => { console.log(data)})
 
-    // Make a request to the sing-up back end to validate the login
-    const isLoginValid = await this.loginService.validateLogin(loginResponse.email as string, loginResponse.senha as string);
+  //   // Make a request to the sing-up back end to validate the login
+  //   const isLoginValid = await this.loginService.validateLogin(loginResponse.email as string, loginResponse.senha as string);
 
-    if (isLoginValid) {
-      this.retorno.emit(loginResponse);
-    } else {
-      alert('Login ou senha incorretos!');
-    }
+  //   if (isLoginValid) {
+  //     this.retorno.emit(loginResponse);
+  //   } else {
+  //     alert('Login ou senha incorretos!');
+  //   }
   }
 }
