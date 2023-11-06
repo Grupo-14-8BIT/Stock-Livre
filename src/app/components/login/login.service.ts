@@ -9,7 +9,7 @@ import { SingUp } from '../sing-up/sing-up';
 })
 export class LoginService {
 
-  API: string = 'http://localhost:8081/api/v1/auth/authenticate';
+  API: string = 'http://localhost:8082/api/v1/auth/authenticate';
   http = inject(HttpClient);
 
   constructor() {}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './account.service';
 import { Account } from './account';
+import { AppComponent } from 'src/app/app.component';
+import eventService from 'src/app/event.service';
 
 @Component({
     selector: 'app-account',
@@ -14,20 +16,21 @@ export class AccountComponent implements OnInit {
     constructor(private accountService: AccountService) { }
     showAddAccount: boolean = false;
 
-    ngOnInit(): void {
-        this.loadAllAccounts();
-    }
+    token! : string;
 
-    loadAllAccounts(): void {
-        
-        this.accountService.getAllAccounts().subscribe(data => {
-            // this.accounts = data as Account[];
-        }, error => {
+    ngOnInit(): void {
+
+        this.accountService.getAllAccounts().subscribe((data : Account[])  => {
+            this.accounts = data;
+        }, (error: any) => {
             console.error('Error fetching all accounts:', error);
         });
         console.log(this.accounts);
         console.log("I will be back");
-    }
+
+        }
+
+
 
     addOuEditarCarro(event: any) {
         console.log("teste");
