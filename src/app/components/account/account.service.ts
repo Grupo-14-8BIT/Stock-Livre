@@ -39,7 +39,7 @@ getAllAccounts() :any {
 
     let options = this.getStandardOptions();
 
-    console.log("getAllAccount:\t" + this.token);
+    console.log(this.token);
 
     
 
@@ -80,4 +80,3 @@ deleteAccount(id: number) {
 // function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
 //     throw new Error('Function not implemented.');
 // }
-
