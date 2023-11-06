@@ -1,20 +1,38 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Stock } from './stock';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
 
-  private baseURL = 'http://localhost:8082/api/v1/admin/stock';
+  private baseURL = 'http://localhost:8082/api/v1/admin/estoque';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private cookieService : CookieService) { }
 
-  getAllStock() {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTM0NUBnbWFpbC5jb20iLCJpYXQiOjE2OTkxMjA5MjQsImV4cCI6MTY5OTIwNzMyNH0.Y3aZvT6D-D2hC9OGCzvfRH8AmDrsaPDEpA_KXRlQWJs';
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.httpClient.get(`${this.baseURL}/getAll`, { headers: headers });
+  token!: string;
+
+  private getStandardOptions() : any {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+  }
+
+
+  getAllStock() :any {
+
+    this.token =  this.cookieService.get("JWT");
+
+    let options = this.getStandardOptions();
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+   
+
+
+    return this.httpClient.get(`${this.baseURL}/getall`,options);
   }
 
   getStockById(id: number) {

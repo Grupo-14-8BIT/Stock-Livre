@@ -36,9 +36,11 @@ export class SkuService {
 
   }
 
-  getAll(): Observable<Sku[]> {
+  getAll(): any {
     console.log("OKIDOKI1");
-    return this.http.get<Sku[]>(this.API + '/getAll');
+    let options = this.getStandardOptions();
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`);
+    return this.http.get(this.API + '/getAll', options);
   }
 
   mudarSkuAnuncio(): Observable<Sku[]> {
