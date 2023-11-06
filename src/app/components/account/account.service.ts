@@ -34,6 +34,7 @@ export class AccountService {
 
 
 getAllAccounts() :any {
+    this.token = this.cookieService.get("JWT");
 
     let options = this.getStandardOptions();
 
@@ -58,18 +59,22 @@ getAllAccounts() :any {
 }
 
 getAccountById(id: number) {
+    this.token = this.cookieService.get("JWT");
     return this.httpClient.get(`${this.baseURL}/conta/${id}`);
 }
 
 createAccount(accountData: any) {
+    this.token = this.cookieService.get("JWT");
     return this.httpClient.post(`${this.baseURL}/conta`, accountData);
 }
 
 updateAccount(id: number, accountData: any) {
+    this.token = this.cookieService.get("JWT");
     return this.httpClient.put(`${this.baseURL}/conta/${id}`, accountData);
 }
 
 deleteAccount(id: number) {
+    this.token = this.cookieService.get("JWT");
     return this.httpClient.delete(`${this.baseURL}/conta/${id}`);
 }
 
