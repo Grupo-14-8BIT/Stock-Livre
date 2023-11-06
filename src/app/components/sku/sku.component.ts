@@ -20,12 +20,7 @@ export class SkuComponent implements OnInit {
   visible:boolean = false;
   
 
-  constructor(private skuService : SkuService){
-    this.skuTeste.descricao = `Description`;
-    this.skuTeste.id = 9;
-    this.skuTeste.nome = `iPhone`;
-    this.skuTeste.sku = `doasfjlkdfj;adlsfas`;
-  }
+  constructor(private skuService : SkuService){}
   ngOnInit(): void {
     this.fetch();
     this.getall();
@@ -35,9 +30,11 @@ export class SkuComponent implements OnInit {
      getall(){
       this.skuService.getAll().subscribe({
         next: sku => { // QUANDO DÁ CERTO
+          console.log("getAll IS EXECUTED");
           this.listaSku = sku; // NOTE: ( fetch ) must be for the authentication so i can access the sku in the mercadolivre.
         },
         error: (error: HttpErrorResponse) => {
+          console.log("getAll IS NOT EXECUTED");
           alert(error.message);
         }
       });
@@ -49,7 +46,7 @@ export class SkuComponent implements OnInit {
           console.log("FETCH IS EXECUTED");
         },
         error: (error) => {
-          // Handle errors, e.g., display an alert
+          console.log("FETCH IS NOT EXECUTED");
           console.error('Fetch error:', error);
         },
       });

@@ -2,8 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Sku } from './sku';
 import { Observable } from 'rxjs';
-import eventService from 'src/app/event.service';
-import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +13,14 @@ export class SkuService {
 
   constructor() {}
 
-
-
   fetch(){
-    let token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTRAZ21haWwuY29tIiwiaWF0IjoxNjk5MjQwOTQyLCJleHAiOjE2OTkzMjczNDJ9.ClI41A0XnndahzElrmiRt7um37HFFq7u7mtw5h4_5Cg'
-    let head_obj = new HttpHeaders().set("Authorization","bearer"+token)
 
-    return this.http.get<Sku[]>(this.API + '/fetch', {headers:head_obj});
+    let token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTRAZ21haWwuY29tIiwiaWF0IjoxNjk5MjQ1NzQ1LCJleHAiOjE2OTkzMzIxNDV9.6MUYmHkSrcjPjn15-b1LtxVkifoQ9WecRVKk5FQuGuM'
+    let head_obj = new HttpHeaders().set("Authorization","bearer"+token)
+    console.log("OKIDOKI0");
+
+    return this.http.get<Sku[]>(this.API + '/fetch', {headers : head_obj});
+
   }
 
   getAll(): Observable<Sku[]> {
