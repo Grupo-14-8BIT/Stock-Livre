@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject,OnInit } from '@angular/core';
 import { Sku } from 'src/app/components/sku/sku'
 import { SkuService } from 'src/app/components/sku/sku.service'
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -27,15 +26,16 @@ export class SkuComponent implements OnInit {
     this.skuTeste.nome = `iPhone`;
     this.skuTeste.sku = `doasfjlkdfj;adlsfas`;
   }
+  ngOnInit(): void {
+    this.fetch();
+    this.getall();
+    // Call the fetch function when the page is opened
+  }
 
-    ngOnInit() {
-      this.fetch();
-    }
-
-     fetch(){
-      this.skuService.fetch().subscribe({
+     getall(){
+      this.skuService.getAll().subscribe({
         next: sku => { // QUANDO DÁ CERTO
-          this.listaSku = sku;
+          this.listaSku = sku; // NOTE: ( fetch ) must be for the authentication so i can access the sku in the mercadolivre.
         },
         error: (error: HttpErrorResponse) => {
           alert(error.message);
@@ -43,6 +43,17 @@ export class SkuComponent implements OnInit {
       });
     }
 
+    fetch() {
+      this.skuService.fetch().subscribe({
+        next: () => {
+          console.log("FETCH IS EXECUTED");
+        },
+        error: (error) => {
+          // Handle errors, e.g., display an alert
+          console.error('Fetch error:', error);
+        },
+      });
+    }
   
 
   update(sku:Sku) {
