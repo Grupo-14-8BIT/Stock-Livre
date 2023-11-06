@@ -19,16 +19,12 @@ export class AccountComponent implements OnInit {
     token! : string;
 
     ngOnInit(): void {
-
         this.accountService.getAllAccounts().subscribe((data : Account[])  => {
             this.accounts = data;
         }, (error: any) => {
             console.error('Error fetching all accounts:', error);
         });
-        console.log(this.accounts);
-        console.log("I will be back");
-
-        }
+    }
 
 
 
