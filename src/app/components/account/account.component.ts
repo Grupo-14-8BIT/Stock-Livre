@@ -45,6 +45,7 @@ export class AccountComponent implements OnInit {
     }
 
     loadAllAccounts(): void {
+
         this.accountService.getAllAccounts().subscribe((data : Account[])  => {
             this.accounts = data;
         }, (error: any) => {
