@@ -23,36 +23,26 @@ export class LoginComponent {
   }
 
   async logar() {
- 
-
     if (!this.login.email || !this.login.senha) {
       alert('E-mail e senha são obrigatórios!');
       return;
     }
-
-    // Call the loginService.fetch() method to authenticate the user
-    (await this.loginService.fetch(this.login.email, this.login.senha)).subscribe( data => { 
-
-      if ( data == Error) {
-
-        alert("Usuario nao existe")
-      } else {
-
-
-        eventService.emit("usuario Logou", JSON.stringify(data) )
-
-      }
+  
+    // // Validate the email
+    // this.login.emailExists = await this.loginService.validateEmail(this.login.email);
+  
+    if (this.login.emailExists) {
+      console.log("ta funcionando disgraca");
       
-let teste = JSON.stringify(data);
-      console.log(teste)})
-
-  //   // Make a request to the sing-up back end to validate the login
-  //   const isLoginValid = await this.loginService.validateLogin(loginResponse.email as string, loginResponse.senha as string);
-
-  //   if (isLoginValid) {
-  //     this.retorno.emit(loginResponse);
-  //   } else {
-  //     alert('Login ou senha incorretos!');
-  //   }
+      // The email exists in the backend
+      (await this.loginService.fetch(this.login.email, this.login.senha)).subscribe(data => {
+        eventService.emit("usuario Logou", JSON.stringify(data));
+      });
+    } else {
+      // The email does not exist in the backend
+      alert('E-mail não existe!');
+    }
   }
+      
+
 }
