@@ -16,6 +16,7 @@ export class LoginComponent {
 
   public roteador: Router;
   loginService: LoginService;
+  token: any;
 
   constructor(loginService: LoginService, router: Router) {
     this.loginService = loginService;
@@ -38,10 +39,15 @@ export class LoginComponent {
         alert("Usuario nao existe")
       } else {
 
+        const logouObj = JSON.parse( JSON.stringify(data));
+          let dpsElimino = this.token = logouObj.access_token;   
+           console.log("token :" + dpsElimino);
 
-        eventService.emit("usuario Logou", JSON.stringify(data) )
+
+        eventService.emit("usuario Logou" ,dpsElimino )
 
       }
+    
       
 let teste = JSON.stringify(data);
       console.log(teste)})

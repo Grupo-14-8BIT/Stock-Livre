@@ -1,65 +1,82 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { AppComponent } from 'src/app/app.component';
 import eventService from 'src/app/event.service';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { Account } from './account';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AccountService {
-    private baseURL = 'http://localhost:8082/api/v1/admin/conta';
+    private baseURL = "http://localhost:8082/api/v1/admin/conta";
 
-    token! : string;
-    
 
-    constructor(private httpClient: HttpClient) {
 
-        
-    eventService.listen("usuario Logou", (logou) => {
-        
-        this.token = logou;
-  
-  
-      })
-  
+    constructor(private httpClient: HttpClient, private cookieService: CookieService) {
 
-     }
 
-    private getStandardOptions() : any {
+    }
+
+    token: string = this.cookieService.get("JWT");
+
+
+    private getStandardOptions(): any {
         return {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-          })
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+            })
         };
-      }
-    
-    
-    getAllAccounts() {
-
-        let options = this.getStandardOptions();
-
-        // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTY1NkBnbWFpbC5jb20iLCJpYXQiOjE2OTkxMzc4MzgsImV4cCI6MTY5OTIyNDIzOH0.E-FSENQz-aiBWA3hKob-rCygY0Lt2HLml8689UvcE_E';
-console.log(this.token);
-
-        options.headers = options.headers.set( 'Authorization', this.token)
-
-        // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);      
-        return this.httpClient.get(`${this.baseURL}/getAll`, options);
     }
     
-    getAccountById(id: number) {
-        return this.httpClient.get(`${this.baseURL}/conta/${id}`);
-    }
 
-    createAccount(accountData: any) {
-        return this.httpClient.post(`${this.baseURL}/conta`, accountData);
-    }
+      
+    
 
-    updateAccount(id: number, accountData: any) {
-        return this.httpClient.put(`${this.baseURL}/conta/${id}`, accountData);
-    }
 
-    deleteAccount(id: number) {
-        return this.httpClient.delete(`${this.baseURL}/conta/${id}`);
-    }
+getAllAccounts() :any {
+
+    let options = this.getStandardOptions();
+
+    console.log("getAllAccount:\t" + this.token);
+
+    options.headers = options.headers.set('Authorization', this.token)
+
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);      
+    return this.httpClient.get(`${this.baseURL}/getAll`, options);
+
+    //    const contasObservable = contas
+    //    .pipe(
+    //      map((buffer: ArrayBuffer) => JSON.parse(JSON.stringify(buffer)))
+    //    );
+
+    //    return contasObservable;
 }
+
+getAccountById(id: number) {
+    return this.httpClient.get(`${this.baseURL}/conta/${id}`);
+}
+
+createAccount(accountData: any) {
+    return this.httpClient.post(`${this.baseURL}/conta`, accountData);
+}
+
+updateAccount(id: number, accountData: any) {
+    return this.httpClient.put(`${this.baseURL}/conta/${id}`, accountData);
+}
+
+deleteAccount(id: number) {
+    return this.httpClient.delete(`${this.baseURL}/conta/${id}`);
+}
+}
+
+
+
+function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
+    throw new Error('Function not implemented.');
+}
+// function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
+//     throw new Error('Function not implemented.');
+// }
+
