@@ -7,12 +7,14 @@ import { SingUp } from '../sing-up/sing-up';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class LoginService {
 
   API: string = 'http://localhost:8082/api/v1/auth/authenticate';
   http = inject(HttpClient);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
   
   private getStandardOptions() : any {
@@ -35,16 +37,6 @@ export class LoginService {
 
 
   }
-  // async validateEmail(email: string): Promise<boolean> {
-  //   const response = await this.httpClient.get(`https://api.example.com/validate-email/${email}`);
-
-  //   if (response.status === 200) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-}
 
   // public async validateLogin(email: string, password: string): Promise<boolean> {
   //   const loginResponse: LoginResponse = await this.fetch(email, password) as LoginResponse;
@@ -57,6 +49,6 @@ export class LoginService {
   //   }
   // }
 
-
+}
 
 
