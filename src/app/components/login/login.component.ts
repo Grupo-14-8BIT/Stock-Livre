@@ -17,6 +17,7 @@ export class LoginComponent {
   public roteador: Router;
   loginService: LoginService;
   token: any;
+  router: any;
 
   constructor(loginService: LoginService, router: Router) {
     this.loginService = loginService;
@@ -45,12 +46,15 @@ export class LoginComponent {
 
 
         eventService.emit("usuario Logou" ,dpsElimino )
-
+        
+   
       }
     
       
 let teste = JSON.stringify(data);
       console.log(teste)})
+
+    
 
   //   // Make a request to the sing-up back end to validate the login
   //   const isLoginValid = await this.loginService.validateLogin(loginResponse.email as string, loginResponse.senha as string);
