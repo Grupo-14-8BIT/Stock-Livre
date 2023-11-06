@@ -41,7 +41,11 @@ getAllAccounts() :any {
 
     console.log("getAllAccount:\t" + this.token);
 
-    options.headers = options.headers.set('Authorization', this.token)
+    
+
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+
 
     // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);      
     return this.httpClient.get(`${this.baseURL}/getAll`, options);
@@ -73,9 +77,6 @@ deleteAccount(id: number) {
 
 
 
-function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
-    throw new Error('Function not implemented.');
-}
 // function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
 //     throw new Error('Function not implemented.');
 // }
