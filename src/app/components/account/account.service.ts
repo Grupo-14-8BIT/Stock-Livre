@@ -12,27 +12,25 @@ import { CookieService } from 'ngx-cookie-service';
 export class AccountService {
     private baseURL = "http://localhost:8082/api/v1/admin/conta";
 
-
-
-    constructor(private httpClient: HttpClient, private cookieService: CookieService) {
-
-
-    }
+    constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
     token: string = this.cookieService.get("JWT");
 
-
     private getStandardOptions(): any {
-        return {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            })
-        };
-    }
+        const token = this.cookieService.get("JWT");
+        console.log(token);
+        
+        if (!token) {
+          throw new Error('JWT token not found in cookies');
+        }
     
-
-      
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        });
     
+        return { headers };
+      }
 
 
 getAllAccounts() :any {
@@ -41,7 +39,11 @@ getAllAccounts() :any {
 
     console.log("getAllAccount:\t" + this.token);
 
-    options.headers = options.headers.set('Authorization', this.token)
+    
+
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+
 
     // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);      
     return this.httpClient.get(`${this.baseURL}/getAll`, options);
@@ -52,6 +54,7 @@ getAllAccounts() :any {
     //    );
 
     //    return contasObservable;
+
 }
 
 getAccountById(id: number) {
@@ -69,14 +72,11 @@ updateAccount(id: number, accountData: any) {
 deleteAccount(id: number) {
     return this.httpClient.delete(`${this.baseURL}/conta/${id}`);
 }
+
+handleError(error: HttpErrorResponse) {
+    // Handle the HTTP error here
+    console.error('An error occurred:', error.error);
+    return throwError(() => new Error('Something bad happened; please try again later.'));
 }
-
-
-
-function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
-    throw new Error('Function not implemented.');
 }
-// function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
-//     throw new Error('Function not implemented.');
-// }
 
