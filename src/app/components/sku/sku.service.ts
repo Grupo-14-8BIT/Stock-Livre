@@ -27,12 +27,12 @@ export class SkuService {
     };
 }
 
-  fetch(){
+  fetch() {
     let options = this.getStandardOptions();
     options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
     console.log("OKIDOKI0");
 
-    return this.http.get<Sku[]>(this.API + '/fetch', options);
+    return this.http.get(this.API + '/fetch', options);
 
   }
 

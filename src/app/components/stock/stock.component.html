@@ -1,6 +1,5 @@
 <div class="content-wrapper">
     <app-side-bar></app-side-bar>
-    <app-add-account></app-add-account>
     <div class="main-content">
               <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"> -->
       <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
@@ -21,10 +20,9 @@
                                 <h2>Estoque </h2>
                             </div>
                             <div class="col-sm-7">
-                              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addStockModal">
-                                <i class="material-icons">&#xE147;</i> <span>Add Stock</span>
-                            </button>                            
-                                <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
+                                <app-stock-add>
+        
+                                </app-stock-add>                         
                             </div>
                         </div>
                     </div>
@@ -45,10 +43,24 @@
                             <td><a href="#">{{ stock.contaid }}</a></td>
 
                             <td>
-                              <a href="#" class="" title="Excluir" aria-label="Excluir"><i class="fas fa-book-open">&#xE5C9;</i></a>
+                              <a  class="" title="Excluir" (click)="stock.show = true" aria-label="Excluir"><i class="fas fa-book-open">&#xE5C9;</i></a>
                           </td>
+                        
+                            <div *ngIf="stock.show === true">
+                                <app-stock-show [id] = "stock.id">
+    
+    
+                                </app-stock-show>
+                                
+
+                       
+                       
+                        
+                        </div>
                         </tr>
-                    </tbody>               
+                    </tbody>   
+                    
+                    
                     </table>
                     <div class="clearfix">
                 </div>

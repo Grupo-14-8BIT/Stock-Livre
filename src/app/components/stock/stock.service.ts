@@ -35,13 +35,29 @@ export class StockService {
     return this.httpClient.get(`${this.baseURL}/getall`,options);
   }
 
-  getStockById(id: number) {
-    return this.httpClient.get(`${this.baseURL}/stock/${id}`);
+  showStock(id:number) :any {
+
+    this.token =  this.cookieService.get("JWT");
+
+    let options = this.getStandardOptions();
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+   
+
+
+    return this.httpClient.get(`${this.baseURL}/show?id=${id}`,options);
   }
 
-  async addNewStock(newStock: Stock, token: string): Promise<void> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    await this.httpClient.post(`${this.baseURL}/stock`, newStock, { headers: headers });
+
+   addNewStock(newStock: any): any {
+    this.token =  this.cookieService.get("JWT");
+
+    let options = this.getStandardOptions();
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+   
+
+
+
+    return this.httpClient.post(`${this.baseURL}/criar`,JSON.stringify(newStock) , options);
   }
 
   updateStock(id: number, stockData: any) {

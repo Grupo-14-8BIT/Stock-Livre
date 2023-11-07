@@ -10,4 +10,5 @@ export class Stock {
     usuario: any;  
     account!:Account;
     stockContent!:any;
+    show!: boolean;
 }

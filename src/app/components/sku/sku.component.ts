@@ -28,6 +28,8 @@ export class SkuComponent implements OnInit {
     // Call the fetch function when the page is opened
   }
   fetch() {
+
+    this.skuService.fetch().subscribe();
     this.skuService.getAll().subscribe((data : Sku[])  => {
       this.listaSku = data;
   }, (error: any) => {

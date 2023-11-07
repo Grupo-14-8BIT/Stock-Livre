@@ -25,6 +25,10 @@ export class StockComponent implements OnInit {
     }); 
   } 
 
+  
+
+ 
+
 
 
   // async addNewStock(stock: Stock): Promise<void> {
