@@ -60,32 +60,22 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Foto</th>
-                            <th scope="col">Produto</th>
+                            <!-- <th scope="col">Foto</th> -->
+                            <!-- <th scope="col">Produto</th> -->
                             <th scope="col">SKU</th>   
-                            <th scope="col">Descricao</th>   
-                            <th scope="col">editar</th>          
+                            <!-- <th scope="col">Descricao</th>    -->
+                            <!-- <th scope="col">editar</th>           -->
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                          <tr *ngFor="let sku of listaSku">
                             <th scope="row"> {{ sku.id }} </th>
-                            <td>{{ sku.foto }}</td>
-                            <td>{{ sku.nome }}</td>
+                            <!-- <td>{{ sku.foto }}</td> -->
+                            <!-- <td>{{ sku.nome }}</td> -->
                             <td>{{ sku.sku }}</td>
-                            <td>{{ sku.descricao }}</td>
-                            <td><button type="button" (click)="update(sku)" class="btn btn-success">Select</button></td>
+                            <!-- <td>{{ sku.descricao }}</td> -->
+                            <!-- <td><button type="button" (click)="update(sku)" class="btn btn-success">Select</button></td> -->
                         </tr> 
-                        <tr>
-                            <th scope="row">1</th>
-                            <td></td>
-                            <td>Acer Spin 5</td>
-                            <td>hJ3k2trG16mpLf7z</td>
-                            <td>The Acer Spin 5 is a lightweight, all-aluminum, two-in-one laptop 
-                                with a high-resolution, 14-inch display powered by speedy 12th-gen 
-                                Intel silicon.</td>
-                                <td><button type="button" (click)="update(skuTeste)" class="btn btn-success">Select</button></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
