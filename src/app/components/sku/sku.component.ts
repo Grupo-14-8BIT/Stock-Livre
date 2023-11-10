@@ -24,39 +24,36 @@ export class SkuComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch();
-    // this.getall();
+    this.getall();
     // Call the fetch function when the page is opened
   }
   fetch() {
-
-    this.skuService.fetch().subscribe();
-    this.skuService.getAll().subscribe((data : Sku[])  => {
-      this.listaSku = data;
-  }, (error: any) => {
-      console.error('Error fetching all accounts:', error);
-  });
-
+      this.skuService.fetch().subscribe({
+        next: () => {
+          console.log("FETCH IS EXECUTED");
+        },
+        error: (error) => {
+          console.log("FETCH IS NOT EXECUTED");
+          console.error('Fetch error:', error);
+        },
+      });
   }
 
-  // getall() {
-  //   this.skuService.getAll().subscribe({
-  //     next: sku => { // QUANDO DÁ CERTO
-  //       console.log("getAll IS EXECUTED");
-  //       this.listaSku = sku; // NOTE: ( fetch ) must be for the authentication so i can access the sku in the mercadolivre.
-  //     },
-  //     error: (error: HttpErrorResponse) => {
-  //       console.log("getAll IS NOT EXECUTED");
-  //       alert(error.message);
-  //     }
-  //   });
-  // }
+  getall() {
+      this.skuService.getAll().subscribe((data : Sku[])  => {
+        this.listaSku = data;
+        console.log("getAll is executed")
+    }, (error: any) => {
+        console.error('Error fetching all accounts:', error);
+    });
+    }
 
-  // update(sku: Sku) {
+   update(sku: Sku) {
 
-  //   this.visible = !this.visible;
+     this.visible = !this.visible;
 
-  //   this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
-  // }
+     this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
+   }
 
   tratarEvent(evento: any) {
     this.visible = !this.visible;
