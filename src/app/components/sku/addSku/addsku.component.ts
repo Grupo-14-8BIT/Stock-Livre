@@ -28,16 +28,11 @@ export class AddskuComponent {
   constructor(skuService: SkuService) {
     this.skuService = skuService;
   }
-
-  EditSku(): void {
-    // Update the SKU data
-    console.log("TA FUNCIONANDO");
+  editSku(): void {
     
     this.skuService.update(this.sku).subscribe({
-      
       next: sku => {
         this.retorno.emit(sku);
-        this.closeModal();
       },
       error: erro => {
         alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');

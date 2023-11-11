@@ -1,29 +1,24 @@
 <div class="modal-header">
     <h5 class="modal-title">Edit SKU</h5>
     <button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
-  </div>
-  <div class="modal-body">
+</div>
+<div class="modal-body">
     <ul class="linpts">
-      <li>
-        <label>PRODUTO</label>
-        <input type="text" [(ngModel)]="sku.nome" name="nome" class="form-control inp"
-          aria-describedby="inputGroup-sizing-default" required>
-      </li>
-      <li>
-        <label>SKU/CODE</label>
-        <input type="text" [(ngModel)]="sku.sku" name="sku" class="form-control inp"
-          aria-describedby="inputGroup-sizing-default" required>
-      </li>
-      <li>
-        <label>DESCRIPTION</label>
-          <input type="text" [(ngModel)]="sku.descricao" class="form-control inp" name="description"
-          aria-describedby="inputGroup-sizing-default" required>
-      </li>
+        <li>
+            <label>PRODUTO</label>
+            <input type="text" [(ngModel)]="sku.nome" name="nome" class="form-control inp" aria-describedby="inputGroup-sizing-default" required>
+        </li>
+        <li>
+            <label>SKU/CODE</label>
+            <input type="text" [(ngModel)]="sku.sku" name="sku" class="form-control inp" aria-describedby="inputGroup-sizing-default" required>
+        </li>
+        <li>
+            <label>DESCRIPTION</label>
+            <input type="text" [(ngModel)]="sku.descricao" class="form-control inp" name="description" aria-describedby="inputGroup-sizing-default" required>
+        </li>
     </ul>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="EditSku()" aria-label="Close">EDIT</button>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="editSku()" aria-label="Close">EDIT</button>
     <button type="button" class="btn btn-secondary" (click)="close()">CANCEL</button>
-   
-  </div>
-  
+</div>
