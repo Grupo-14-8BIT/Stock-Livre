@@ -5,6 +5,7 @@ import eventService from 'src/app/event.service';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Account } from './account';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AccountService {
     private baseURL = "http://localhost:8082/api/v1/admin/conta";
 
-    constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
+    constructor(private httpClient: HttpClient, private cookieService: CookieService, private router: Router) { }
 
     token: string = this.cookieService.get("JWT");
 
@@ -58,30 +59,42 @@ getAllAccounts() :any {
 
 }
 
-getAccountById(id: number) {
+
+
+createAccount() : any {
+
     this.token = this.cookieService.get("JWT");
-    return this.httpClient.get(`${this.baseURL}/conta/${id}`);
+
+    let options = this.getStandardOptions();
+
+    console.log(this.token);
+
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+
+
+    return this.httpClient.get(`${this.baseURL}/autoriza`, options);
 }
 
-createAccount(accountData: any) {
-    this.token = this.cookieService.get("JWT");
-    return this.httpClient.post(`${this.baseURL}/conta`, accountData);
-}
 
-updateAccount(id: number, accountData: any) {
-    this.token = this.cookieService.get("JWT");
-    return this.httpClient.put(`${this.baseURL}/conta/${id}`, accountData);
-}
 
 deleteAccount(id: number) {
-    this.token = this.cookieService.get("JWT");
-    return this.httpClient.delete(`${this.baseURL}/conta/${id}`);
+
+    let options = this.getStandardOptions();
+    
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+    console.log(this.token);
+
+    console.log(options);
+
+    return this.httpClient.delete(`${this.baseURL}/Delete?conta_id=${id}`,options);
 }
 
-handleError(error: HttpErrorResponse) {
-    // Handle the HTTP error here
-    console.error('An error occurred:', error.error);
-    return throwError(() => new Error('Something bad happened; please try again later.'));
-}
+// handleError(error: HttpErrorResponse) {
+//     // Handle the HTTP error here
+//     console.error('An error occurred:', error.error);
+//     return throwError(() => new Error('Something bad happened; please try again later.'));
+// }
 }
 

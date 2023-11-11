@@ -3,6 +3,8 @@ import { AccountService } from './account.service';
 import { Account } from './account';
 import { AppComponent } from 'src/app/app.component';
 import eventService from 'src/app/event.service';
+import { Router } from '@angular/router';
+import { Autoriza } from './autoriza';
 
 @Component({
     selector: 'app-account',
@@ -13,8 +15,9 @@ export class AccountComponent implements OnInit {
     accounts: Account[] = [];
 
     carroSelecionadoParaEdicao: any;
-    constructor(private accountService: AccountService) { }
+    constructor(private accountService: AccountService, private router: Router) { }
     showAddAccount: boolean = false;
+    redirect!: string;
 
     token! : string;
 
@@ -24,19 +27,31 @@ export class AccountComponent implements OnInit {
         }, (error: any) => {
             console.error('Error fetching all accounts:', error);
         });
+
+        this.accountService.createAccount().subscribe((data : any) =>
+        { 
+
+            const logouObj = JSON.parse( JSON.stringify(data));
+             let dpsElimino  = logouObj.redirect;
+            
+            this.redirect = dpsElimino;
+            console.log("LINK ADICONAR CONTA" + this.redirect);
+        });
     }
 
 
 
-    addOuEditarCarro(event: any) {
-        console.log("teste");
-    }
-
-    editAccount(accountId: number) {
-        console.log(`Edit Account with ID: ${accountId}`);
-    }
+ 
 
     deleteAccount(accountId: number) {
-        console.log(`Delete Account with ID: ${accountId}`);
+      this.accountService.deleteAccount(accountId).subscribe();
+      alert("Conta desvinculada");
+
+      this.accounts = [];
+      this.accountService.getAllAccounts().subscribe((data : Account[])  => {
+        this.accounts = data;
+    }, (error: any) => {
+        console.error('Error fetching all accounts:', error);
+    });
     }
 }
