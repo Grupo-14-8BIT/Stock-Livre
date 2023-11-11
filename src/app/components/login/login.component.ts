@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   public roteador: Router;
   loginService: LoginService;
   token: any;
-  router: any;
+  
 
   constructor(loginService: LoginService,private router: Router, private  cookieService : CookieService) {
     this.loginService = loginService;
