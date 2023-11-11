@@ -9,8 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { SideBarComponent } from './components/layout/side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
@@ -18,6 +18,8 @@ import { AddAccountComponent } from './components/layout/add-account/add-account
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { SellComponent } from './components/sell/sell.component';
 import { AddskuComponent } from './components/sku/addSku/addsku.component';
+import { StockAddComponent } from './components/stock/stock-add/stock-add.component';
+import { StockShowComponent } from './components/stock/stock-show/stock-show.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { AddskuComponent } from './components/sku/addSku/addsku.component';
     DashboardComponent,
     SellComponent,
     AddskuComponent,
+    StockAddComponent,
+    StockShowComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { AddskuComponent } from './components/sku/addSku/addsku.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
