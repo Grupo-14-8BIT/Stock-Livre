@@ -24,10 +24,11 @@ export class AddskuComponent {
 
   constructor(private skuService: SkuService) { }
 
-  EditSku(): void {
+  EditSku() {
     
     this.skuService.update(this.sku).subscribe({
       next: sku => {
+        console.log("edit is executed")
         this.retorno.emit(sku);
       },
       error: erro => {

@@ -16,9 +16,7 @@ export class SkuComponent implements OnInit {
   objetoSelecionadoParaEdicao: Sku = new Sku();
   indiceSelecionadoParaEdicao!: number;
 
-  visible:boolean = false;
-  data: any;
-  
+  visible:boolean = false;  
 
   constructor(private skuService : SkuService){}
   ngOnInit(): void {

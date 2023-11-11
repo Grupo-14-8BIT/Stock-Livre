@@ -1,49 +1,45 @@
 <div class="containsAdd">
-
     <div class="bothtopclms">
-
-        <div class="input-group mb-3">
-            <ul class="linpts">
-                <Form (ngSubmit)="EditSku()">
-                    <li>
-                        <label>PRODUTO</label>
-                        <input type="text" [(ngModel)]="sku.nome" name="nome" class="form-control inp"
-                            aria-describedby="inputGroup-sizing-default" required>
-                    </li>
-                    <li>
-                        <label>SKU/CODE</label>
-                        <input type="text" [(ngModel)]="sku.sku" name="sku" class="form-control inp"
-                            aria-describedby="inputGroup-sizing-default" required>
-                    </li>
-                    <li>
-                        <label>DESCRIPTION</label>
-                          <input type="text" [(ngModel)]="sku.descricao" class="form-control inp" name="description"
-                            aria-describedby="inputGroup-sizing-default" required>
-                    </li>
-                </Form>
-            </ul>
-
-        </div>
-
-        <div class="clmAdd2">
-            <label>FOTO</label>
-            <input type="text" [(ngModel)]="sku.foto" name="Foto" class="form-control">
-        </div>
-
+      <div class="input-group mb-3">
+        <form (ngSubmit)="EditSku()">
+          <ul class="linpts">
+            <li>
+              <label>PRODUTO</label>
+              <input type="text" [(ngModel)]="sku.nome" name="nome" class="form-control inp"
+                aria-describedby="inputGroup-sizing-default" required>
+            </li>
+            <li>
+              <label>SKU/CODE</label>
+              <input type="text" [(ngModel)]="sku.sku" name="sku" class="form-control inp"
+                aria-describedby="inputGroup-sizing-default" required>
+            </li>
+            <li>
+              <label>DESCRIPTION</label>
+              <input type="text" [(ngModel)]="sku.descricao" class="form-control inp" name="description"
+                aria-describedby="inputGroup-sizing-default" required>
+            </li>
+          </ul>
+        </form>
+      </div>
+  
+      <div class="clmAdd2">
+        <label>FOTO</label>
+        <input type="text" [(ngModel)]="sku.foto" name="Foto" class="form-control">
+      </div>
     </div>
-
+  
     <div class="addbtns">
-        <button type="submit" class="btn btn-primary"
-            style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1rem;">
-            EDIT</button>
-
-        <button type="button" class="btn btn-danger" (click)="clearInputs()"
-            style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;">
-            CANCEL</button>
-
-            <button type="button" class="btn btn-danger" (click)="close()"
-            style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;">
-            FECHAR</button>
+      <button type="submit" (click)="EditSku()" class="btn btn-primary"
+        style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1rem;">
+        EDIT</button>
+  
+      <button type="button" class="btn btn-danger" (click)="clearInputs()"
+        style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;">
+        CANCEL</button>
+  
+      <button type="button" class="btn btn-danger" (click)="close()"
+        style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;">
+        FECHAR</button>
     </div>
-
-</div>
+  </div>
+  
