@@ -1,16 +1,17 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Login } from './login';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import eventService from 'src/app/event.service';
 import { map } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   @Input() login: Login = new Login();
   @Output() retorno = new EventEmitter<Login>();
 
@@ -18,9 +19,15 @@ export class LoginComponent {
   loginService: LoginService;
   token: any;
 
-  constructor(loginService: LoginService, router: Router) {
+  constructor(loginService: LoginService,private router: Router, private  cookieService : CookieService) {
     this.loginService = loginService;
     this.roteador = router;
+  }
+  ngOnInit(): void {
+
+    this.cookieService.deleteAll();
+      
+
   }
 
   async logar() {
@@ -42,10 +49,8 @@ export class LoginComponent {
         const logouObj = JSON.parse( JSON.stringify(data));
           let dpsElimino = this.token = logouObj.access_token;   
            console.log("token :" + dpsElimino);
-
-
-        eventService.emit("usuario Logou" ,dpsElimino )
-
+           this.cookieService.set("JWT", dpsElimino);
+           this.router.navigate(['/account']);
       }
     
       
