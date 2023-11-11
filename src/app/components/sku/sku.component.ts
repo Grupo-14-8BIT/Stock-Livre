@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject,OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular/core';
 import { Sku } from 'src/app/components/sku/sku'
 import { SkuService } from 'src/app/components/sku/sku.service'
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,7 +16,12 @@ export class SkuComponent implements OnInit {
   objetoSelecionadoParaEdicao: Sku = new Sku();
   indiceSelecionadoParaEdicao!: number;
 
+<<<<<<< HEAD
   visible:boolean = false;  
+=======
+  visible:boolean = false;
+  
+>>>>>>> 580eeddbf6fa7effecdb575c9c77b1f5c53cd88f
 
   constructor(private skuService : SkuService){}
   ngOnInit(): void {
@@ -43,18 +48,19 @@ export class SkuComponent implements OnInit {
           console.error('Fetch error:', error);
         },
       });
+
     }
-  
 
-  update(sku:Sku) {
+   update(sku: Sku) {
 
-    this.visible = !this.visible;
+     this.visible = !this.visible;
 
-    this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
-  }
+     this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
+   }
 
-  tratarEvent(evento: any){
+  tratarEvent(evento: any) {
     this.visible = !this.visible;
 
   }
 }
+

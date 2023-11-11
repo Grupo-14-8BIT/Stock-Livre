@@ -16,9 +16,13 @@ export class AppComponent implements OnInit {
 
 
     eventService.listen("usuario Logou", (logou: string) => {  
+      this.cookieService.deleteAll(); 
       this.cookieService.set("JWT", logou )
     });
   }
+
+
+
   ngOnInit(): void {
 
      }

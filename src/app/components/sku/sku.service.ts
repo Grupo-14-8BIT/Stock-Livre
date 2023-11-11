@@ -4,7 +4,6 @@ import { Sku } from './sku';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -69,5 +68,4 @@ export class SkuService {
     option.headers = option.headers.set('Authorization', `Bearer ${this.token}`)
     return this.http.put<Sku>(this.API + '/update?sku=' + sku.sku, option);
   }
-
 }
