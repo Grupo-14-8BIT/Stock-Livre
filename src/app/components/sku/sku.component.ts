@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular
 import { Sku } from 'src/app/components/sku/sku'
 import { SkuService } from 'src/app/components/sku/sku.service'
 import { HttpErrorResponse } from '@angular/common/http';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-sku',
@@ -10,24 +11,30 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 
 export class SkuComponent implements OnInit {
-  listaSku: Sku[] = [];
-
-  skuTeste: Sku = new Sku();
-
+  listaSku: Sku[]=[];
+  
   objetoSelecionadoParaEdicao: Sku = new Sku();
   indiceSelecionadoParaEdicao!: number;
 
-  visible: boolean = false;
+  visible:boolean = false;
+  
 
-
-  constructor(private skuService: SkuService) { }
-
+  constructor(private skuService : SkuService){}
   ngOnInit(): void {
     this.fetch();
     this.getall();
     // Call the fetch function when the page is opened
   }
-  fetch() {
+
+     getall(){
+      this.skuService.getAll().subscribe((sku : Sku[] )  => {
+        this.listaSku = sku;
+    }, (error: any) => {
+        console.error('Error fetching all accounts:', error);
+    });
+  }
+
+    fetch() {
       this.skuService.fetch().subscribe({
         next: () => {
           console.log("FETCH IS EXECUTED");
@@ -37,15 +44,7 @@ export class SkuComponent implements OnInit {
           console.error('Fetch error:', error);
         },
       });
-  }
 
-  getall() {
-      this.skuService.getAll().subscribe((data : Sku[])  => {
-        this.listaSku = data;
-        console.log("getAll is executed")
-    }, (error: any) => {
-        console.error('Error fetching all accounts:', error);
-    });
     }
 
    update(sku: Sku) {

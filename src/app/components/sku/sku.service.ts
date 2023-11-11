@@ -12,35 +12,46 @@ export class SkuService {
   API: string = 'http://localhost:8082/api/v1/admin/sku';
   http = inject(HttpClient);
 
-
-
-  constructor(private cookieService: CookieService) {}
-
+  constructor( private cookieService: CookieService) {}
 
   token: string = this.cookieService.get("JWT");
 
+
   private getStandardOptions(): any {
-    return {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-        })
-    };
-}
+    const token = this.cookieService.get("JWT");
+    console.log(token);
+    
+    if (!token) {
+      throw new Error('JWT token not found in cookies');
+    }
 
-  fetch() {
-    let options = this.getStandardOptions();
-    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
-    console.log("OKIDOKI0");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
 
-    return this.http.get(this.API + '/fetch', options);
-
+    return { headers };
   }
 
-  getAll(): any {
-    console.log("OKIDOKI1");
+  fetch(){
     let options = this.getStandardOptions();
-    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`);
-    return this.http.get(this.API + '/getAll', options);
+
+    console.log("getAllAccount:\t" + this.token);
+
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+    return this.http.get<Sku[]>(this.API + '/fetch', options);
+  }
+
+  getAll():any{
+    console.log("OKIDOKI1");
+    let option = this.getStandardOptions();
+
+    console.log("getAllAccount:\t" + this.token);
+
+    option.headers = option.headers.set('Authorization', `Bearer ${this.token}`)
+
+    return this.http.get(this.API + '/getAll', option);
   }
 
   mudarSkuAnuncio(): Observable<Sku[]> {
@@ -50,7 +61,6 @@ export class SkuService {
 
   update(sku: Sku): Observable<Sku> {
     console.log("OKIDOKI3");
-    return this.http.put<Sku>(this.API + '/update?sku=' + [sku], sku);
+    return this.http.put<Sku>(this.API + '/update?sku=' + sku.nome, sku);
   }
-
 }
