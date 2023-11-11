@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Sku } from 'src/app/components/sku/sku'
 import { SkuService } from 'src/app/components/sku/sku.service'
 import { Injectable } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class AddskuComponent {
   @Input() sku: Sku = new Sku();
   @Output() retorno = new EventEmitter<Sku>();
 
+  modalService = inject(NgbModal);
+  modalRef!: NgbModalRef;
 
 
   constructor(private skuService: SkuService) { }
@@ -47,4 +50,5 @@ export class AddskuComponent {
   close(){
     this.retorno.emit(this.sku);
   }
+
 }
