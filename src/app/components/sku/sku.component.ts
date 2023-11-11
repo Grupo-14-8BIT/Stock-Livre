@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, Output, inject,OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular/core';
 import { Sku } from 'src/app/components/sku/sku'
 import { SkuService } from 'src/app/components/sku/sku.service'
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -11,49 +10,54 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 
 export class SkuComponent implements OnInit {
-  listaSku: Sku[]=[];
+  listaSku: Sku[] = [];
 
   skuTeste: Sku = new Sku();
-  
+
   objetoSelecionadoParaEdicao: Sku = new Sku();
   indiceSelecionadoParaEdicao!: number;
 
-  visible:boolean = false;
-  
+  visible: boolean = false;
 
-  constructor(private skuService : SkuService){
-    this.skuTeste.descricao = `Description`;
-    this.skuTeste.id = 9;
-    this.skuTeste.nome = `iPhone`;
-    this.skuTeste.sku = `doasfjlkdfj;adlsfas`;
+
+  constructor(private skuService: SkuService) { }
+
+  ngOnInit(): void {
+    this.fetch();
+    this.getall();
+    // Call the fetch function when the page is opened
   }
-
-    ngOnInit() {
-      this.fetch();
-    }
-
-     fetch(){
+  fetch() {
       this.skuService.fetch().subscribe({
-        next: sku => { // QUANDO DÁ CERTO
-          this.listaSku = sku;
+        next: () => {
+          console.log("FETCH IS EXECUTED");
         },
-        error: (error: HttpErrorResponse) => {
-          alert(error.message);
-        }
+        error: (error) => {
+          console.log("FETCH IS NOT EXECUTED");
+          console.error('Fetch error:', error);
+        },
       });
-    }
-
-  
-
-  update(sku:Sku) {
-
-    this.visible = !this.visible;
-
-    this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
   }
 
-  tratarEvent(evento: any){
+  getall() {
+      this.skuService.getAll().subscribe((data : Sku[])  => {
+        this.listaSku = data;
+        console.log("getAll is executed")
+    }, (error: any) => {
+        console.error('Error fetching all accounts:', error);
+    });
+    }
+
+   update(sku: Sku) {
+
+     this.visible = !this.visible;
+
+     this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
+   }
+
+  tratarEvent(evento: any) {
     this.visible = !this.visible;
 
   }
 }
+
