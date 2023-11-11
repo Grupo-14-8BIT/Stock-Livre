@@ -12,6 +12,8 @@ export class StockComponent implements OnInit {
 
   // selectedStockForEdition: Stock;
   showAddStock: boolean = false;
+  showId!: number;
+  show!:boolean;
 
   constructor(private stockService: StockService) { }
 
