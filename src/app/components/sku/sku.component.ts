@@ -28,18 +28,12 @@ export class SkuComponent implements OnInit {
   }
 
      getall(){
-      this.skuService.getAll().subscribe({
-        next: (sku) => {
-          // Assign the received 'sku' to 'this.listaSku'
-          this.data = sku;
-          console.log("getAll IS EXECUTED");
-        },
-        error: (error: HttpErrorResponse) => {
-          console.log("getAll IS NOT EXECUTED");
-          alert(error.message);
-        }
-      });
-    }
+      this.skuService.getAll().subscribe((sku : Sku[] )  => {
+        this.listaSku = sku;
+    }, (error: any) => {
+        console.error('Error fetching all accounts:', error);
+    });
+  }
 
     fetch() {
       this.skuService.fetch().subscribe({
