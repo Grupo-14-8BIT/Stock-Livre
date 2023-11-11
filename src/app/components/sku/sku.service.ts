@@ -2,6 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Sku } from './sku';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,21 +13,46 @@ export class SkuService {
   API: string = 'http://localhost:8082/api/v1/admin/sku';
   http = inject(HttpClient);
 
-  constructor() {}
+  constructor( private cookieService: CookieService) {}
 
-  fetch(){
+  token: string = this.cookieService.get("JWT");
 
-    let token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZTRAZ21haWwuY29tIiwiaWF0IjoxNjk5MjQ1NzQ1LCJleHAiOjE2OTkzMzIxNDV9.6MUYmHkSrcjPjn15-b1LtxVkifoQ9WecRVKk5FQuGuM'
-    let head_obj = new HttpHeaders().set("Authorization","bearer"+token)
-    console.log("OKIDOKI0");
 
-    return this.http.get<Sku[]>(this.API + '/fetch', {headers : head_obj});
+  private getStandardOptions(): any {
+    const token = this.cookieService.get("JWT");
+    console.log(token);
+    
+    if (!token) {
+      throw new Error('JWT token not found in cookies');
+    }
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return { headers };
   }
 
-  getAll(): Observable<Sku[]> {
+  fetch(){
+    let options = this.getStandardOptions();
+
+    console.log("getAllAccount:\t" + this.token);
+
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+    return this.http.get<Sku[]>(this.API + '/fetch', options);
+  }
+
+  getAll(){
     console.log("OKIDOKI1");
-    return this.http.get<Sku[]>(this.API + '/getAll');
+    let option = this.getStandardOptions();
+
+    console.log("getAllAccount:\t" + this.token);
+
+    option.headers = option.headers.set('Authorization', `Bearer ${this.token}`)
+
+    return this.http.get<Sku[]>(this.API + '/getAll', option);
   }
 
   mudarSkuAnuncio(): Observable<Sku[]> {
@@ -35,7 +62,7 @@ export class SkuService {
 
   update(sku: Sku): Observable<Sku> {
     console.log("OKIDOKI3");
-    return this.http.put<Sku>(this.API + '/update?sku=' + [sku], sku);
+    return this.http.put<Sku>(this.API + '/update?sku=' + sku.nome, sku);
   }
 
 }

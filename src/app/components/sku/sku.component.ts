@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, inject,OnInit } from '@angular/
 import { Sku } from 'src/app/components/sku/sku'
 import { SkuService } from 'src/app/components/sku/sku.service'
 import { HttpErrorResponse } from '@angular/common/http';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-sku',
@@ -11,13 +12,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class SkuComponent implements OnInit {
   listaSku: Sku[]=[];
-
-  skuTeste: Sku = new Sku();
   
   objetoSelecionadoParaEdicao: Sku = new Sku();
   indiceSelecionadoParaEdicao!: number;
 
   visible:boolean = false;
+  data: any;
   
 
   constructor(private skuService : SkuService){}
@@ -29,9 +29,10 @@ export class SkuComponent implements OnInit {
 
      getall(){
       this.skuService.getAll().subscribe({
-        next: sku => { // QUANDO DÁ CERTO
+        next: (sku) => {
+          // Assign the received 'sku' to 'this.listaSku'
+          this.data = sku;
           console.log("getAll IS EXECUTED");
-          this.listaSku = sku; // NOTE: ( fetch ) must be for the authentication so i can access the sku in the mercadolivre.
         },
         error: (error: HttpErrorResponse) => {
           console.log("getAll IS NOT EXECUTED");
