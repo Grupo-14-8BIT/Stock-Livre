@@ -62,8 +62,8 @@ export class StockComponent implements OnInit {
 
 
 
-   deleteStock(stockId: number) {
-    this.stockService.deleteStock(stockId).subscribe();
+   deleteStock(id: number) {
+    this.stockService.deleteStock(id).subscribe();
     alert("stock desvinculado");
 
     this.stock = [];  

@@ -65,7 +65,7 @@ export class StockService {
     return this.httpClient.put(`${this.baseURL}/stock/${id}`, stockData);
   }
 
-  deleteStock(id: number) {
+  deleteStock(id: number): any {
     let options = this.getStandardOptions();
     
     options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
@@ -74,6 +74,6 @@ export class StockService {
 
     console.log(options);
 
-    return this.httpClient.delete(`${this.baseURL}/Delete?stock_id=${id}`,options);
+    return this.httpClient.delete(`${this.baseURL}/deletecontent?id=${id}`,options);
   }
 }
