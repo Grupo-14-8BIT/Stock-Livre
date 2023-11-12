@@ -17,15 +17,22 @@ export class AccountService {
 
     token: string = this.cookieService.get("JWT");
 
-    constructor(private httpClient: HttpClient, private cookieService: CookieService) {}
-
     private getStandardOptions(): any {
-        return {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            })
-        };
-    }
+        const token = this.cookieService.get("JWT");
+        console.log(token);
+        
+        if (!token) {
+          throw new Error('JWT token not found in cookies');
+        }
+    
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        });
+    
+        return { headers };
+      }
+
 
 getAllAccounts() :any {
     this.token = this.cookieService.get("JWT");
@@ -34,7 +41,11 @@ getAllAccounts() :any {
 
     console.log(this.token);
 
+    
+
     options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+
 
     // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);      
     return this.httpClient.get(`${this.baseURL}/getAll`, options);
@@ -45,7 +56,10 @@ getAllAccounts() :any {
     //    );
 
     //    return contasObservable;
+
 }
+
+
 
 createAccount() : any {
 
@@ -83,7 +97,3 @@ deleteAccount(id: number) {
 //     return throwError(() => new Error('Something bad happened; please try again later.'));
 // }
 }
-// function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
-//     throw new Error('Function not implemented.');
-// }
-
