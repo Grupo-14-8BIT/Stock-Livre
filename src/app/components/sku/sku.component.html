@@ -48,7 +48,7 @@
         </div>
 
         <ng-container *ngIf="visible">
-            <app-addsku [sku]="objetoSelecionadoParaEdicao" (retorno)="tratarEvent($event)"></app-addsku>
+            <app-addsku [sku]="objetoSelecionadoParaEdicao" [skuAntigo]="skuAntigo" (retorno)="tratarEvent($event)"></app-addsku>
         </ng-container>
 
         <div class="my-stock-container">

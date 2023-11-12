@@ -17,28 +17,28 @@ export class AddskuComponent {
   inputValue2: string = '';
   inputValue3: string = '';
 
+  @Input() skuAntigo!: String;
+
   @Input() sku: Sku = new Sku();
   @Output() retorno = new EventEmitter<Sku>();
 
   modalService = inject(NgbModal);
   modalRef!: NgbModalRef;
 
-  private skuService: SkuService;
+  constructor(private skuService: SkuService) { }
 
-  constructor(skuService: SkuService) {
-    this.skuService = skuService;
-  }
-  editSku(): void {
+  EditSku(): void {
     
     this.skuService.update(this.sku).subscribe({
       next: sku => {
         this.retorno.emit(sku);
       },
-      error: erro => {
+      error: () => {
         alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
-        console.error(erro);
+        console.error(Error);
       }
     });
+   
   }
 
   closeModal() {
