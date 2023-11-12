@@ -22,6 +22,7 @@ import { StockAddComponent } from './components/stock/stock-add/stock-add.compon
 import { StockShowComponent } from './components/stock/stock-show/stock-show.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
