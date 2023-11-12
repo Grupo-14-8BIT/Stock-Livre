@@ -66,8 +66,9 @@ export class StockComponent implements OnInit {
     this.stockService.deleteStock(stockId).subscribe();
     alert("stock desvinculado");
 
-    this.stock = [];
+    this.stock = [];  
     this.stockService.getAllStock().subscribe((data : Stock[])  => {
+      console.log("ate aqui ta ok");
       this.stock = data;
   }, (error: any) => {
       console.error('Error fetching all accounts:', error);

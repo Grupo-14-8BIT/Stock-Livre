@@ -34,6 +34,7 @@ export class StockService {
 
     return this.httpClient.get(`${this.baseURL}/getall`,options);
   }
+ 
 
   showStock(id:number) :any {
 
