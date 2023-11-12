@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Sku } from 'src/app/components/sku/sku';
-import { SkuService } from 'src/app/components/sku/sku.service';
+import { Sku } from 'src/app/components/sku/sku'
+import { SkuService } from 'src/app/components/sku/sku.service'
 import { Injectable } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-addsku',
@@ -22,15 +22,15 @@ export class AddskuComponent {
   @Input() sku: Sku = new Sku();
   @Output() retorno = new EventEmitter<Sku>();
 
-  modalService = inject(NgbModal);
-  modalRef!: NgbModalRef;
+
 
   constructor(private skuService: SkuService) { }
 
-  EditSku(): void {
-    
-    this.skuService.update(this.sku).subscribe({
-      next: sku => {
+  EditSku(sku:Sku) {
+    console.log(this.skuAntigo)
+    this.skuService.update(this.sku , this.skuAntigo).subscribe({
+      next: () => {
+        console.log("edit is executed")
         this.retorno.emit(sku);
       },
       error: () => {
@@ -40,11 +40,7 @@ export class AddskuComponent {
     });
    
   }
-
-  closeModal() {
-    this.modalRef.close();
-  }
-
+  
   clearInputs() {
     this.sku.descricao = '';
     this.sku.nome = '';
@@ -52,7 +48,7 @@ export class AddskuComponent {
     // Add more lines to clear additional inputs as needed
   }
 
-  close() {
+  close(){
     this.retorno.emit(this.sku);
   }
 }

@@ -59,9 +59,6 @@ export class SkuService {
     return this.http.get<Sku[]>(this.API + '/change');
   }
 
-
-  
-
   update(sku: Sku, skuAntigo : String): any{
     console.log(sku);
     console.log("OKIDOKI3");
@@ -71,7 +68,7 @@ export class SkuService {
     console.log("getAllAccount:\t" + this.token);
  
     option.headers = option.headers.set('Authorization', `Bearer ${this.token}`)
-
+    return this.http.put(this.API + '/update?sku=' + skuAntigo , sku , option);
   }
  
 }
