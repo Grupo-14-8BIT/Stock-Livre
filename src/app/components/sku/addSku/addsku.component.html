@@ -1,7 +1,7 @@
 <div class="containsAdd">
     <div class="bothtopclms">
       <div class="input-group mb-3">
-        <form (ngSubmit)="EditSku()">
+        <form (ngSubmit)="EditSku(sku)">
           <ul class="linpts">
             <li>
               <label>PRODUTO</label>
@@ -29,7 +29,7 @@
     </div>
   
     <div class="addbtns">
-      <button type="submit" (click)="EditSku()" class="btn btn-primary"
+      <button type="submit" (click)="EditSku(sku)" class="btn btn-primary"
         style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1rem;">
         EDIT</button>
   

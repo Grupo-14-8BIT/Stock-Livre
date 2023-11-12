@@ -17,6 +17,8 @@ export class AddskuComponent {
   inputValue2: string = '';
   inputValue3: string = '';
 
+  @Input() skuAntigo!: String;
+
   @Input() sku: Sku = new Sku();
   @Output() retorno = new EventEmitter<Sku>();
 
@@ -24,18 +26,19 @@ export class AddskuComponent {
 
   constructor(private skuService: SkuService) { }
 
-  EditSku() {
-    
-    this.skuService.update(this.sku).subscribe({
-      next: sku => {
+  EditSku(sku:Sku) {
+    console.log(this.skuAntigo)
+    this.skuService.update(this.sku , this.skuAntigo).subscribe({
+      next: () => {
         console.log("edit is executed")
         this.retorno.emit(sku);
       },
-      error: erro => {
+      error: () => {
         alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
-        console.error(erro);
+        console.error(Error);
       }
     });
+   
   }
   
   clearInputs() {
