@@ -5,12 +5,16 @@ import eventService from 'src/app/event.service';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Account } from './account';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AccountService {
     private baseURL = "http://localhost:8082/api/v1/admin/conta";
+
+    constructor(private httpClient: HttpClient, private cookieService: CookieService, private router: Router) { }
+
     token: string = this.cookieService.get("JWT");
 
     constructor(private httpClient: HttpClient, private cookieService: CookieService) {}
@@ -24,6 +28,7 @@ export class AccountService {
     }
 
 getAllAccounts() :any {
+    this.token = this.cookieService.get("JWT");
 
     let options = this.getStandardOptions();
 
@@ -42,33 +47,41 @@ getAllAccounts() :any {
     //    return contasObservable;
 }
 
-getAccountById(id: number) {
-    return this.httpClient.get(`${this.baseURL}/conta/${id}`);
-}
+createAccount() : any {
 
-autorizaAccount(): Observable<any> {
+    this.token = this.cookieService.get("JWT");
+
     let options = this.getStandardOptions();
-    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`);
-    // Note: 'as any'    cast is required to avoid TypeScript compile errors
-    options.responseType = 'text' as 'json'; // Set responseType to 'text' as 'json'
-  
-    // Use a GET request and pass the modified options, cast options as 'any'
-    return this.httpClient.get<string>(`${this.baseURL}/autoriza`, options as any);
-  }
 
-  
+    console.log(this.token);
 
-createAccount(accountData: any) {
-    return this.httpClient.post(`${this.baseURL}/conta`, accountData);
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+
+
+    return this.httpClient.get(`${this.baseURL}/autoriza`, options);
 }
 
-updateAccount(id: number, accountData: any) {
-    return this.httpClient.put(`${this.baseURL}/conta/${id}`, accountData);
-}
+
 
 deleteAccount(id: number) {
-    return this.httpClient.delete(`${this.baseURL}/conta/${id}`);
+
+    let options = this.getStandardOptions();
+    
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+    console.log(this.token);
+
+    console.log(options);
+
+    return this.httpClient.delete(`${this.baseURL}/Delete?conta_id=${id}`,options);
 }
+
+// handleError(error: HttpErrorResponse) {
+//     // Handle the HTTP error here
+//     console.error('An error occurred:', error.error);
+//     return throwError(() => new Error('Something bad happened; please try again later.'));
+// }
 }
 // function CrossOrigin(): (target: AccountService, propertyKey: "getAllAccounts", descriptor: TypedPropertyDescriptor<() => any>) => void | TypedPropertyDescriptor<() => any> {
 //     throw new Error('Function not implemented.');

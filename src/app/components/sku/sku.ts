@@ -5,5 +5,6 @@ export class Sku {
     sku!: String;
     descricao!:String;
     foto!: String;
+    Authenticaion!:String;
 
 }

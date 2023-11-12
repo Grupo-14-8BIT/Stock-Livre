@@ -9,6 +9,7 @@ import { StockComponent } from './components/stock/stock.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SellComponent } from './components/sell/sell.component';
+import { StockShowComponent } from './components/stock/stock-show/stock-show.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "entrar", pathMatch: 'full' },
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: "announcement", component:  AnnouncementComponent},
   { path: "login", component:  LoginComponent},
   { path: "singup", component:  SingUpComponent},
-  { path: "stock", component:  StockComponent},
+  { path: "stock", component:  StockComponent, children: [{ path: "show", component: StockShowComponent}]},
   { path: "home", component:  HomePageComponent},
   { path: "dashboard", component:  DashboardComponent},
   { path: "sell", component:  SellComponent},

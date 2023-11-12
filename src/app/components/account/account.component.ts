@@ -4,6 +4,7 @@ import { Account } from './account';
 import { AppComponent } from 'src/app/app.component';
 import eventService from 'src/app/event.service';
 import { Router } from '@angular/router';
+import { Autoriza } from './autoriza';
 
 @Component({
     selector: 'app-account',
@@ -20,6 +21,9 @@ export class AccountComponent implements OnInit {
 
     carroSelecionadoParaEdicao: any;
     constructor(private accountService: AccountService, private router: Router) { }
+    showAddAccount: boolean = false;
+    redirect!: string;
+
 
 
     openAddAccountModal(): void {
@@ -51,40 +55,31 @@ export class AccountComponent implements OnInit {
         }, (error: any) => {
             console.error('Error fetching all accounts:', error);
         });
+
+        this.accountService.createAccount().subscribe((data : any) =>
+        { 
+
+            const logouObj = JSON.parse( JSON.stringify(data));
+             let dpsElimino  = logouObj.redirect;
+            
+            this.redirect = dpsElimino;
+            console.log("LINK ADICONAR CONTA" + this.redirect);
+        });
     }
 
 
-    addOrUpdateAccount(): void {
-        if (this.selectedAccountForEdit) {
-            // Logic to update the existing account
-            const index = this.accounts.findIndex(acc => acc.id === this.selectedAccountForEdit?.id);
-            if (index !== -1) {
-                this.accounts[index] = { ...this.newAccount };
-            }
-        } else {
-            // Add new account logic
-            const newId = this.accounts.length > 0 ? Math.max(...this.accounts.map(acc => acc.id ?? 0)) + 1 : 1;
-            this.newAccount.id = newId;
-            this.accounts.push(this.newAccount);
-        }
-        this.resetModal();
-    }
 
-    editAccount(id: number): void {
-        this.selectedAccountForEdit = this.accounts.find(acc => acc.id === id) ?? null;
-        if (this.selectedAccountForEdit) {
-            this.newAccount = { ...this.selectedAccountForEdit };
-        }
-        this.showAddAccount = true;
-    }
+ 
 
-    deleteAccount(accountId: number): void {
-        this.accounts = this.accounts.filter(account => account.id !== accountId);
-    }
+    deleteAccount(accountId: number) {
+      this.accountService.deleteAccount(accountId).subscribe();
+      alert("Conta desvinculada");
 
-    resetModal() {
-        this.showAddAccount = false;
-        this.selectedAccountForEdit = null;
-        this.newAccount = new Account(); 
+      this.accounts = [];
+      this.accountService.getAllAccounts().subscribe((data : Account[])  => {
+        this.accounts = data;
+    }, (error: any) => {
+        console.error('Error fetching all accounts:', error);
+    });
     }
 }
