@@ -59,8 +59,16 @@ export class SkuService {
     return this.http.get<Sku[]>(this.API + '/change');
   }
 
-  update(sku: Sku): Observable<Sku> {
+  update(sku: Sku, skuAntigo : String): any{
+    console.log(sku);
     console.log("OKIDOKI3");
-    return this.http.put<Sku>(this.API + '/update?sku=' + sku.nome, sku);
+    console.log("update service",skuAntigo)
+    let option = this.getStandardOptions();
+ 
+    console.log("getAllAccount:\t" + this.token);
+ 
+    option.headers = option.headers.set('Authorization', `Bearer ${this.token}`)
+    return this.http.put(this.API + '/update?sku=' + skuAntigo , sku , option);
   }
+ 
 }
