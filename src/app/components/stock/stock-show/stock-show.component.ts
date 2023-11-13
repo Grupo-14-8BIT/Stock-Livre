@@ -55,6 +55,7 @@ export class StockShowComponent implements OnInit {
 
   this.stockService.createStockContent(ComponentBody).subscribe((data : any) => {
     console.log(data)
+    window.location.reload();
   })
 
 
