@@ -47,12 +47,14 @@
 
                                 <td>
 
+
                                     <button type="button" class="btn btn-secondary" (click)="editarStock(stock)" data-bs-toggle="modal" data-bs-target="#stockEdit">
                                         Editar   
                                         </button>
 
                                     <app-stock-editar  [stock]="stock" (close)="selectedStock = null"></app-stock-editar>
                                 </td>
+
                                 <td>
                                     <button class="btn btn-danger" type="button" title="Excluir" (click)="deleteStock(stock.id)">Excluir</button>
                                   </td>

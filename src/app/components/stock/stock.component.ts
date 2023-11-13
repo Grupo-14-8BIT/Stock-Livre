@@ -17,11 +17,7 @@ export class StockComponent implements OnInit {
   stock!:Stock;
   
 
-  editStock(stock: Stock): void {
-    console.log("apertou");
-    
-    this.selectedStock = stock;
-  }
+
   
   constructor(private stockService: StockService) { }
 
@@ -78,4 +74,24 @@ editarStock(stock : Stock){
   //     // Exiba uma mensagem de erro para o usuário.
   //   }
   // // }
+
+
+   editStock(stock: Stock): void {
+    console.log(`Edit Stock with ID: ${stock.id}`);
+  }
+
+
+
+  //  deleteStock(id: number) {
+  //   this.stockService.deleteStock(id).subscribe();
+  //   alert("stock desvinculado");
+
+  //   this.stock = [];  
+  //   this.stockService.getAllStock().subscribe((data : Stock[])  => {
+  //     this.stock = data;
+
+  // }, (error: any) => {
+  //     console.error('Error fetching all accounts:', error);
+  // });
+  // }
 }
