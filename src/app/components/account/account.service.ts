@@ -17,7 +17,6 @@ export class AccountService {
 
     token: string = this.cookieService.get("JWT");
 
-    constructor(private httpClient: HttpClient, private cookieService: CookieService) {}
 
     private getStandardOptions(): any {
         return {

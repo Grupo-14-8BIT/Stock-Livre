@@ -14,6 +14,7 @@ export class StockComponent implements OnInit {
   showAddStock: boolean = false;
   showId!: number;
   show!:boolean;
+  stockId!: number;
 
   constructor(private stockService: StockService) { }
 
@@ -26,12 +27,6 @@ export class StockComponent implements OnInit {
         console.error('Error fetching all accounts:', error);
     }); 
   } 
-
-  
-
- 
-
-
 
   // async addNewStock(stock: Stock): Promise<void> {
   //   // Crie um objeto FormData para armazenar os dados do novo estoque.
@@ -54,22 +49,30 @@ export class StockComponent implements OnInit {
   //     // Ocorreu um erro ao adicionar o novo estoque.
   //     // Exiba uma mensagem de erro para o usuário.
   //   }
-  // // }
+  // }
 
    editStock(stock: Stock): void {
-    console.log(`Edit Stock with ID: ${stock.id}`);
-  }
+     console.log(`Edit Stock with ID: ${stock.id}`);
+   }
 
 
 
-   deleteStock(id: number) {
-    this.stockService.deleteStock(id).subscribe();
+   deleteStock(stock: Stock) {
+    this.stockId = stock.id;
+    this.stockService.deleteStock(this.stockId).subscribe({
+      next:()=>{
+        console.log("StockDelete is executed")
+      },error: () => {
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(Error);
+      }
+    });
     alert("stock desvinculado");
 
     this.stock = [];  
     this.stockService.getAllStock().subscribe((data : Stock[])  => {
+      console.log("ate aqui ta ok");
       this.stock = data;
-
   }, (error: any) => {
       console.error('Error fetching all accounts:', error);
   });
