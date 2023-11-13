@@ -91,4 +91,20 @@ export class StockService {
     return this.httpClient.post(`${this.baseURL }/addContent`, addContent,  options);
 }
 
+
+updateQuantidade(update: any): any {
+    
+  this.token = this.cookieService.get("JWT");
+
+  let options = this.getStandardOptions();
+
+  console.log(this.token);
+
+  options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+  return this.httpClient.post(`${this.baseURL }/updateContent`, update,  options);
+
+}
+
+
 }
