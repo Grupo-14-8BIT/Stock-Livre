@@ -33,6 +33,7 @@
                             <th>ID</th>
                             <th>Nome</th>
                             <th>Conta</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
               
@@ -43,14 +44,16 @@
                                 <td>{{ stock.id }}</td>
                                 <td><a href="">{{ stock.nome }}</a></td>
                                 <td><a href="">{{ stock.contaid }}</a></td>
-    
+
                                 <td>
-                                  <a  class="" title="Excluir" (click)="stock.show = !stock.show; showId = stock.id; this.show = stock.show" aria-label="Excluir"><i class="fas fa-book-open">&#xE5C9;</i></a>
-                              </td>
-
-                              
-
-
+                                    <a  class="" title="Excluir" (click)="stock.show = !stock.show; showId = stock.id; this.show = stock.show" aria-label="Excluir"><i class="fas fa-book-open">&#xE5C9;</i></a>
+                                  </td>
+                                <td>
+                                    <button class="btn btn-danger" type="button" title="Editar" (click)="editStock(stock)">Editar</button>
+                                  </td>
+                                <td>
+                                    <button class="btn btn-danger" type="button" title="Excluir" (click)="deleteStock(stock.id)">Excluir</button>
+                                  </td>
                         </tr>
                         
                         <div class=""  *ngIf="this.show === true ">
