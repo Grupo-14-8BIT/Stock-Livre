@@ -14,6 +14,7 @@ export class StockComponent implements OnInit {
   showAddStock: boolean = false;
   showId!: number;
   show!:boolean;
+  stock!:Stock;
   
 
   editStock(stock: Stock): void {
@@ -47,6 +48,13 @@ export class StockComponent implements OnInit {
   }, (error: any) => {
       console.error('Error fetching all accounts:', error);
   });
+}
+
+editarStock(stock : Stock){
+
+  this.stock = stock;
+
+
 }
   // async addNewStock(stock: Stock): Promise<void> {
   //   // Crie um objeto FormData para armazenar os dados do novo estoque.

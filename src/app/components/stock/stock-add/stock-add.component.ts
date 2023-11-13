@@ -42,7 +42,11 @@ export class StockAddComponent {
     const stock_dto = {
       nome:this.stockForm.value.stockNome,
       conta:this.stockForm.value.stockConta,
+
+      
     }
+
+    console.log("CAMINHO CERTO SUBMITFORM")
     this.stockService.addNewStock(stock_dto).subscribe((data : any ) =>
     {
       eventService.emit("addStock", data);

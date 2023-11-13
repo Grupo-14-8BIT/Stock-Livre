@@ -3,6 +3,7 @@ import { Stock } from '../stock';
 import { AccountService } from '../../account/account.service';
 import { Account } from '../../account/account';
 import { FormControl, FormGroup } from '@angular/forms';
+import { StockService } from '../stock.service';
 
 @Component({
   selector: 'app-stock-editar',
@@ -10,15 +11,17 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./stock-editar.component.scss']
 })
 export class StockEditarComponent implements OnInit{
-  Stock: Stock | null = null;
   accounts!: Account[];
 
-  accountService = inject(AccountService);
-  stockService = inject(AccountService);
+  // accountService = inject(AccountService);
+  // stockService = inject(AccountService);
   
     @Input() stock!: Stock;
     @Output() close = new EventEmitter<void>();
   
+  constructor(private accountService: AccountService, private stockService: StockService) { }
+
+
   ngOnInit(): void {
     this.accountService.getAllAccounts().subscribe((data : Account[])  => {
       this.accounts = data;
@@ -47,18 +50,35 @@ export class StockEditarComponent implements OnInit{
   }
   
   submitForm() {
-    console.log("making update");
-    const stock_dto = {
-      nome:this.stockForm.value.stockNome,
-      conta:this.stockForm.value.stockConta,
+    console.log("mCAMINHO ERRRADO");
+  
+    const stockDTO = {
+      nome: this.stockForm.value.stockNome,
+      conta: this.stockForm.value.stockConta,
+    };
+  
+    if (this.stock && this.stock.id) {
+      this.stockService.updateStock(this.stock.id, stockDTO).subscribe(
+        (response) => {
+          console.log("Stock updated", response);
+        },
+        (error) => {
+          console.error("Error updating stock", error);
+        }
+      );
+    } else {
+      console.error("Stock ID is not available");
     }
-    // this.stockService.addNewStock(stock_dto).subscribe((data : any ) =>
-    // {
-      
-    //   eventService.emit("addStock", data);
-    //   console.log("Estoque adicionado" + data);
-
-    // })
+  
     this.stockForm.reset();
+    this.closeModal();
   }
+
+  byId(item1: any, item2: any) {
+		if (item1 != null && item2 != null)
+			return item1.id === item2.id;
+		else
+			return item1 === item2;
+	}
+  
 }
