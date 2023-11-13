@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import eventService from 'src/app/event.service';
 import { StockService } from '../stock.service';
@@ -13,7 +13,7 @@ import { Account } from '../../account/account';
 })
 export class StockAddComponent {
 
-  
+
   @Output () addStock = new EventEmitter<Stock>();
 
   stockService = inject(StockService);
@@ -34,31 +34,21 @@ export class StockAddComponent {
     }, (error: any) => {
         console.error('Error fetching all accounts:', error);
     });
-}
+  }
 
+  
 
   submitForm() {
     const stock_dto = {
       nome:this.stockForm.value.stockNome,
       conta:this.stockForm.value.stockConta,
     }
+    this.stockService.addNewStock(stock_dto).subscribe((data : any ) =>
+    {
+      eventService.emit("addStock", data);
+      console.log("Estoque adicionado" + data);
 
-
-
-
-
-     this.stockService.addNewStock(stock_dto).subscribe((data : any ) =>
-      {
-        eventService.emit("addStock", data);
-        console.log("Estoque adicionado" + data);
-
-      })
-
+    })
     this.stockForm.reset();
-
-
-}
-
-
-
+  }
 }

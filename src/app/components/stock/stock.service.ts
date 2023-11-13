@@ -62,7 +62,11 @@ export class StockService {
   }
 
   updateStock(id: number, stockData: any) {
-    return this.httpClient.put(`${this.baseURL}/stock/${id}`, stockData);
+    let option = this.getStandardOptions();
+    console.log(stockData);
+    
+    option.headers = option.headers.set('Authorization', `Bearer ${this.token}`)
+    return this.httpClient.put(`${this.baseURL}/updateContent${id}`, stockData, option);
   }
 
   deleteStock(id: number) {

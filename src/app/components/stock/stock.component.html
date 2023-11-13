@@ -38,7 +38,7 @@
                     </thead>
               
                     <tbody>
-                        <tr *ngFor="let stock of stock" class="container" >
+                        <tr *ngFor="let stock of stocks" class="container" >
                            
 
                                 <td>{{ stock.id }}</td>
@@ -46,8 +46,8 @@
                                 <td><a href="">{{ stock.contaid }}</a></td>
 
                                 <td>
-                                    <button class="btn btn-danger" type="button" title="Editar" (click)="editStock(stock)">Editar</button>
-                                  </td>
+                                    <app-stock-editar  [stock]="stock" (close)="selectedStock = null"></app-stock-editar>
+                                </td>
                                 <td>
                                     <button class="btn btn-danger" type="button" title="Excluir" (click)="deleteStock(stock.id)">Excluir</button>
                                   </td>
@@ -69,4 +69,5 @@
         </div>
     </div>
     </div>
+        
 </div>

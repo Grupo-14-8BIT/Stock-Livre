@@ -1,0 +1,71 @@
+
+
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addStock">
+    Editar   
+    </button>
+    
+
+        <div class="modal fade" id="addStock" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style = "color: black"aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel" >Novo Estoque</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body m-0">
+    
+            <div class="container">
+              <form id="add-sabor" class=" row mt-3 gx-3 gy-2 align-items-center justify-content-center"  (ngSubmit)="submitForm()" [formGroup]="stockForm">
+                <div class="  col">
+                  <label for="nome" class=" cisually-hidden">Nome do estoque</label>
+                  <input type="text" name="stockNome" class="form-control" placeholder="teste" formControlName="stockNome">
+                </div>
+             
+               
+          
+                <div class=" d-flex flex-column">
+                    <label for="nome" class=" cisually-hidden">Conta</label>
+                      </div >
+                      <select name=""  formControlName="stockConta">
+                      <option *ngFor="let item of accounts" [value]="item.id"  >{{item.contaid}}</option>
+                    
+                    </select>
+  
+
+                
+           
+
+    
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button for="add-pessoa" type="submit"  data-bs-dismiss="modal" class="btn btn-primary"> Adicionar Estoque</button>
+                </div>
+                
+           
+              </form>
+         
+    
+              
+          </div>
+     
+        </div>
+      </div>
+      
+    </div>
+<!-- <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <form>
+        <div>
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" [(ngModel)]="stock.nome" name="nome">
+        </div>
+        <div>
+          <label for="conta">Conta:</label>
+          <input type="number" id="conta" [(ngModel)]="stock.contaid" name="conta">
+        </div>
+        <button type="submit" (click)="updateStock()">Update</button>
+      </form>
+    </div>
+  </div>   -->
