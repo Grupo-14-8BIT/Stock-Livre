@@ -24,7 +24,7 @@
                 <div class=" d-flex flex-column">
                     <label for="nome" class=" cisually-hidden">Conta</label>
                       </div >
-                      <select name="" [(ngModel)]="stock.account" [compareWith]="byId" formControlName="stockConta">
+                      <select name="" [(ngModel)]="stock.conta" [compareWith]="byId" formControlName="stockConta">
                       <option *ngFor="let item of accounts" [ngValue]="item"   >{{item.contaid}}</option>
                     
                     </select>
