@@ -102,7 +102,7 @@ updateQuantidade(update: any): any {
 
   options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
 
-  return this.httpClient.post(`${this.baseURL }/updateContent`, update,  options);
+  return this.httpClient.post(`${this.baseURL }/updateContent?id=`, update,  options);
 
 }
 
