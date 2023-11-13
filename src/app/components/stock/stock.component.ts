@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Stock } from './stock';
 import { StockService } from './stock.service';
 
@@ -8,20 +8,24 @@ import { StockService } from './stock.service';
   styleUrls: ['./stock.component.scss']
 })
 export class StockComponent implements OnInit {
-  stock: Stock[] = [];
-
+  stocks: Stock[] = [];
+  selectedStock: Stock | null = null;
   // selectedStockForEdition: Stock;
   showAddStock: boolean = false;
   showId!: number;
   show!:boolean;
+  stock!:Stock;
+  
 
+
+  
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
   
       this.stockService.getAllStock().subscribe((data : Stock[])  => {
-        this.stock = data;
-        console.log(this.stock);
+        this.stocks = data;
+        console.log(this.stocks);
     }, (error: any) => {
         console.error('Error fetching all accounts:', error);
     }); 
@@ -29,10 +33,33 @@ export class StockComponent implements OnInit {
 
   
 
- 
+  deleteStock(stockId: number) {
+    this.stockService.deleteStock(stockId).subscribe((data:any) => {
+
+      console.log("DELETE STOCK");
+      alert("stock desvinculado");
+
+  }, (error: any) => {
+  
+
+    });
 
 
+    this.stocks = [];  
+    this.stockService.getAllStock().subscribe((data : Stock[])  => {
+      console.log("ate aqui ta ok");
+      this.stocks = data;
+  }, (error: any) => {
+      console.error('Error fetching all accounts:', error);
+  });
+}
 
+editarStock(stock : Stock){
+
+  this.stock = stock;
+
+
+}
   // async addNewStock(stock: Stock): Promise<void> {
   //   // Crie um objeto FormData para armazenar os dados do novo estoque.
   //   const formData = new FormData();
@@ -56,22 +83,23 @@ export class StockComponent implements OnInit {
   //   }
   // // }
 
+
    editStock(stock: Stock): void {
     console.log(`Edit Stock with ID: ${stock.id}`);
   }
 
 
 
-   deleteStock(id: number) {
-    this.stockService.deleteStock(id).subscribe();
-    alert("stock desvinculado");
+  //  deleteStock(id: number) {
+  //   this.stockService.deleteStock(id).subscribe();
+  //   alert("stock desvinculado");
 
-    this.stock = [];  
-    this.stockService.getAllStock().subscribe((data : Stock[])  => {
-      this.stock = data;
+  //   this.stock = [];  
+  //   this.stockService.getAllStock().subscribe((data : Stock[])  => {
+  //     this.stock = data;
 
-  }, (error: any) => {
-      console.error('Error fetching all accounts:', error);
-  });
-  }
+  // }, (error: any) => {
+  //     console.error('Error fetching all accounts:', error);
+  // });
+  // }
 }

@@ -20,6 +20,7 @@ import { SellComponent } from './components/sell/sell.component';
 import { AddskuComponent } from './components/sku/addSku/addsku.component';
 import { StockAddComponent } from './components/stock/stock-add/stock-add.component';
 import { StockShowComponent } from './components/stock/stock-show/stock-show.component';
+import { StockEditarComponent } from './components/stock/stock-editar/stock-editar.component';
 
 
 
@@ -40,7 +41,8 @@ import { StockShowComponent } from './components/stock/stock-show/stock-show.com
     SellComponent,
     AddskuComponent,
     StockAddComponent,
-    StockShowComponent
+    StockShowComponent,
+    StockEditarComponent
   ],
   imports: [
     BrowserModule,
