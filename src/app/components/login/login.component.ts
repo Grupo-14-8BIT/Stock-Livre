@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   public roteador: Router;
   loginService: LoginService;
   token: any;
+  
 
   constructor(loginService: LoginService,private router: Router, private  cookieService : CookieService) {
     this.loginService = loginService;
@@ -49,13 +50,23 @@ export class LoginComponent implements OnInit {
         const logouObj = JSON.parse( JSON.stringify(data));
           let dpsElimino = this.token = logouObj.access_token;   
            console.log("token :" + dpsElimino);
+
+
+
+        eventService.emit("usuario Logou" ,dpsElimino )
+        
+   
+
            this.cookieService.set("JWT", dpsElimino);
            this.router.navigate(['/account']);
+
       }
     
       
 let teste = JSON.stringify(data);
       console.log(teste)})
+
+    
 
   //   // Make a request to the sing-up back end to validate the login
   //   const isLoginValid = await this.loginService.validateLogin(loginResponse.email as string, loginResponse.senha as string);

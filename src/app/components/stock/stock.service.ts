@@ -34,6 +34,7 @@ export class StockService {
 
     return this.httpClient.get(`${this.baseURL}/getall`,options);
   }
+ 
 
   showStock(id:number) :any {
 
@@ -64,7 +65,30 @@ export class StockService {
     return this.httpClient.put(`${this.baseURL}/stock/${id}`, stockData);
   }
 
-  deleteStock(id: number) {
-    return this.httpClient.delete(`${this.baseURL}/stock/${id}`);
+  deleteStock(id: number): any {
+    let options = this.getStandardOptions();
+    
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+    console.log("delete-token:\t" + this.token);
+
+    console.log(options);
+
+    return this.httpClient.delete(`${this.baseURL}/deletecontent?id=${id}`,options);
   }
+
+
+  createStockContent(addContent: any): any {
+    
+    this.token = this.cookieService.get("JWT");
+
+    let options = this.getStandardOptions();
+
+    console.log(this.token);
+
+    options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
+
+    return this.httpClient.post(`${this.baseURL }/addContent`, addContent,  options);
+}
+
 }

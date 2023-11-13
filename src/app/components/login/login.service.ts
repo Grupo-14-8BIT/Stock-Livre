@@ -26,17 +26,19 @@ export class LoginService {
   }
 
 
-  public async fetch(email: string, password: string): Promise<Observable<any>> {
-    let options = this.getStandardOptions();
-    
-    const params = {email : email, password : password}; 
+  async fetch(email: string, password: string): Promise<Observable<any>> {
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    const params = {email : email, password : password};
     let login = await this.http.post(this.API, JSON.stringify(params), options);
 
     return login;
- 
-
-
   }
+}
 
   // public async validateLogin(email: string, password: string): Promise<boolean> {
   //   const loginResponse: LoginResponse = await this.fetch(email, password) as LoginResponse;
@@ -49,6 +51,6 @@ export class LoginService {
   //   }
   // }
 
-}
+
 
 
