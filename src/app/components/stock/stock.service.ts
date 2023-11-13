@@ -70,7 +70,7 @@ export class StockService {
     
     options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
 
-    console.log(this.token);
+    console.log("delete-token:\t" + this.token);
 
     console.log(options);
 

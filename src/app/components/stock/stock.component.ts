@@ -57,8 +57,8 @@ export class StockComponent implements OnInit {
   // // }
 
    editStock(stock: Stock): void {
-     console.log(`Edit Stock with ID: ${stock.id}`);
-   }
+    console.log(`Edit Stock with ID: ${stock.id}`);
+  }
 
 
 
@@ -68,8 +68,8 @@ export class StockComponent implements OnInit {
 
     this.stock = [];  
     this.stockService.getAllStock().subscribe((data : Stock[])  => {
-      console.log("ate aqui ta ok");
       this.stock = data;
+
   }, (error: any) => {
       console.error('Error fetching all accounts:', error);
   });
