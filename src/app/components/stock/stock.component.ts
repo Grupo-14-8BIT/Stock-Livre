@@ -56,11 +56,22 @@ export class StockComponent implements OnInit {
   //   }
   // // }
 
-  // editStock(stock: Stock): void {
-  //   console.log(`Edit Stock with ID: ${stock.id}`);
-  // }
+   editStock(stock: Stock): void {
+    console.log(`Edit Stock with ID: ${stock.id}`);
+  }
 
-  // deleteStock(stock: Stock): void {
-  //   console.log(`Delete Stock with ID: ${stock.id}`);
-  // }
+
+
+   deleteStock(id: number) {
+    this.stockService.deleteStock(id).subscribe();
+    alert("stock desvinculado");
+
+    this.stock = [];  
+    this.stockService.getAllStock().subscribe((data : Stock[])  => {
+      this.stock = data;
+
+  }, (error: any) => {
+      console.error('Error fetching all accounts:', error);
+  });
+  }
 }
