@@ -14,12 +14,14 @@ import { Account } from '../../account/account';
 export class StockAddComponent {
 
   
-  @Output () addStock = new EventEmitter<Stock>();
+  @Output () addStock = new EventEmitter<any>();
 
   stockService = inject(StockService);
   accountService = inject(AccountService);
 
   accounts!: Account[];
+
+  
 
 
   stockForm = new FormGroup({
@@ -43,13 +45,10 @@ export class StockAddComponent {
       conta:this.stockForm.value.stockConta,
     }
 
-
-
-
-
      this.stockService.addNewStock(stock_dto).subscribe((data : any ) =>
       {
         eventService.emit("addStock", data);
+        this.addStock.emit("addStock");
         console.log("Estoque adicionado" + data);
 
       })

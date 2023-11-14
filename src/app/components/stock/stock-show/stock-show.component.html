@@ -11,10 +11,11 @@
       </thead>
       <tbody>
           <tr *ngFor="let item of component">
-              <td>{{ item.skuSimples.sku }}</td>
-              <td>{{ item.quantidade_real }}</td>
+              <td>{{ item?.id }}</td>
+              <td>{{ item?.skuSimples?.sku }}</td>
+              <td>{{ item?.quantidade_real }}</td>
               <td>
-                <a (click)="updateQuantidade()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"data-bs-whatever="@mdo"><i class="material-icons">&#xE5C9;</i></a>
+                <a (click)="carregarObjeto(item)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"data-bs-whatever="@mdo"><i class="material-icons">&#xE5C9;</i></a>
             </td>
           </tr>
       </tbody>  
@@ -61,9 +62,9 @@
             </div>
             <div class="modal-body">
               <form   (ngSubmit)="updateQuantidade()" [formGroup]="Component">
-                <div class="mb-3">
+                <div class="mb-3" *ngIf="itemSelecionado != null">
                     <label for="ComponentQuantidade" class="col-form-label">Quantidade:</label>
-                    <input type="number" class="form-control" id="ComponentQuantidade" formControlName="ComponentQuantidade">
+                    <input type="number" class="form-control" id="ComponentQuantidade" [(ngModel)]="itemSelecionado.quantidade_real" formControlName="ComponentQuantidade">
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
