@@ -51,7 +51,8 @@ export class StockEditarComponent implements OnInit{
   }
   
   submitForm() {
-    console.log("making update");
+
+    console.log("mCAMINHO ERRRADO");
   
     const stockDTO = {
       nome: this.stockForm.value.stockNome,
@@ -74,5 +75,13 @@ export class StockEditarComponent implements OnInit{
     this.stockForm.reset();
     this.closeModal();
   }
+
+
+  byId(item1: any, item2: any) {
+		if (item1 != null && item2 != null)
+			return item1.id === item2.id;
+		else
+			return item1 === item2;
+	}
   
 }

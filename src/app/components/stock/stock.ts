@@ -8,7 +8,7 @@ export class Stock {
     refresh_token!: string;
     expires!: Date;
     usuario: any;  
-    account!:Account;
+    conta!:Account;
     stockContent!:any;
     show!: boolean;
 }
