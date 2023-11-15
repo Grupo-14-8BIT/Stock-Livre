@@ -1,6 +1,7 @@
 
 
 
+
     
 
         <div class="modal fade" id="stockEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style = "color: black"aria-hidden="true">
@@ -24,6 +25,7 @@
                 <div class=" d-flex flex-column">
                     <label for="nome" class=" cisually-hidden">Conta</label>
                       </div >
+
                       <select name="" [(ngModel)]="stock.conta" [compareWith]="byId" formControlName="stockConta">
                       <option *ngFor="let item of accounts" [ngValue]="item"   >{{item.contaid}}</option>
                     
@@ -37,6 +39,7 @@
                 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
                   <button for="add-pessoa" type="submit"  data-bs-dismiss="modal" class="btn btn-primary"> Editar Estoque</button>
                 </div>
                 

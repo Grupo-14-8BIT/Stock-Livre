@@ -21,16 +21,24 @@ export class StockComponent implements OnInit {
   
   constructor(private stockService: StockService) { }
 
+
+  tratarAdd(){
+    this.carregarLista();
+  }
+
   ngOnInit(): void {
-  
-      this.stockService.getAllStock().subscribe((data : Stock[])  => {
-        this.stocks = data;
-        console.log(this.stocks);
-    }, (error: any) => {
-        console.error('Error fetching all accounts:', error);
-    }); 
+    this.carregarLista();
+    
   } 
 
+  carregarLista(){
+    this.stockService.getAllStock().subscribe((data : Stock[])  => {
+      this.stocks = data;
+      console.log(this.stock);
+  }, (error: any) => {
+      console.error('Error fetching all accounts:', error);
+  }); 
+  }
   
 
   deleteStock(stockId: number) {

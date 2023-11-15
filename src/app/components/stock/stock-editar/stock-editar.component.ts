@@ -11,6 +11,7 @@ import { StockService } from '../stock.service';
   styleUrls: ['./stock-editar.component.scss']
 })
 export class StockEditarComponent implements OnInit{
+  Stock: Stock | null = null;
   accounts!: Account[];
 
   // accountService = inject(AccountService);
@@ -50,6 +51,7 @@ export class StockEditarComponent implements OnInit{
   }
   
   submitForm() {
+
     console.log("mCAMINHO ERRRADO");
   
     const stockDTO = {
@@ -73,6 +75,7 @@ export class StockEditarComponent implements OnInit{
     this.stockForm.reset();
     this.closeModal();
   }
+
 
   byId(item1: any, item2: any) {
 		if (item1 != null && item2 != null)

@@ -20,7 +20,7 @@
                                 <h2>Estoque </h2>
                             </div>
                             <div class="col-sm-7">
-                                <app-stock-add>
+                                <app-stock-add (addStock)="tratarAdd()">
         
                                 </app-stock-add>                         
                             </div>
@@ -45,6 +45,9 @@
                                 <td><a href="">{{ stock.nome }}</a></td>
                                 <td><a href="">{{ stock.conta.contaid }}</a></td>
 
+                                <td>
+                                    <a  class="" title="Excluir" (click)="stock.show = !stock.show; showId = stock.id; this.show = stock.show" aria-label="Excluir"><i class="fas fa-book-open">&#xE5C9;</i></a>
+                                  </td>
                                 <td>
 
 

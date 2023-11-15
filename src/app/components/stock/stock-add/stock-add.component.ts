@@ -14,12 +14,15 @@ import { Account } from '../../account/account';
 export class StockAddComponent {
 
 
+
   @Output () addStock = new EventEmitter<Stock>();
 
   stockService = inject(StockService);
   accountService = inject(AccountService);
 
   accounts!: Account[];
+
+  
 
 
   stockForm = new FormGroup({
@@ -45,6 +48,7 @@ export class StockAddComponent {
 
       
     }
+
 
     console.log("CAMINHO CERTO SUBMITFORM")
     this.stockService.addNewStock(stock_dto).subscribe((data : any ) =>
