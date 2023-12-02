@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Stock } from './stock';
 import { CookieService } from 'ngx-cookie-service';
+import { componenteStock } from './stock-show/componenteStock';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +63,11 @@ export class StockService {
   }
 
   updateStock(id: number, stockData: any) {
-    return this.httpClient.put(`${this.baseURL}/stock/${id}`, stockData);
+    let option = this.getStandardOptions();
+    console.log(stockData);
+    
+    option.headers = option.headers.set('Authorization', `Bearer ${this.token}`)
+    return this.httpClient.put(`${this.baseURL}/updateContent${id}`, stockData, option);
   }
 
   deleteStock(id: number): any {
@@ -92,7 +97,10 @@ export class StockService {
 }
 
 
-updateQuantidade(UpdatedComponentBody : any): any {
+
+updateQuantidade(id: number, update: any): any {
+  
+
     
   this.token = this.cookieService.get("JWT");
 
@@ -102,7 +110,9 @@ updateQuantidade(UpdatedComponentBody : any): any {
 
   options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
 
-  return this.httpClient.post(`${this.baseURL }/updateContent?id=`, UpdatedComponentBody,  options);
+
+  return this.httpClient.put(`${this.baseURL }/updateContent?id=${id}`, update, options);
+
 
 }
 

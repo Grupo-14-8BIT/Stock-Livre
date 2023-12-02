@@ -20,7 +20,7 @@
                                 <h2>Estoque </h2>
                             </div>
                             <div class="col-sm-7">
-                                <app-stock-add>
+                                <app-stock-add (addStock)="tratarAdd()">
         
                                 </app-stock-add>                         
                             </div>
@@ -38,19 +38,26 @@
                     </thead>
               
                     <tbody>
-                        <tr *ngFor="let stock of stock" class="container" >
+                        <tr *ngFor="let stock of stocks" class="container" >
                            
 
                                 <td>{{ stock.id }}</td>
                                 <td><a href="">{{ stock.nome }}</a></td>
-                                <td><a href="">{{ stock.contaid }}</a></td>
+                                <td><a href="">{{ stock.conta.contaid }}</a></td>
 
                                 <td>
                                     <a  class="" title="Excluir" (click)="stock.show = !stock.show; showId = stock.id; this.show = stock.show" aria-label="Excluir"><i class="fas fa-book-open">&#xE5C9;</i></a>
                                   </td>
                                 <td>
-                                    <button class="btn btn-danger" type="button" title="Editar" (click)="editStock(stock)">Editar</button>
-                                  </td>
+
+
+                                    <button type="button" class="btn btn-secondary" (click)="editarStock(stock)" data-bs-toggle="modal" data-bs-target="#stockEdit">
+                                        Editar   
+                                        </button>
+
+                                    <app-stock-editar  [stock]="stock" (close)="selectedStock = null"></app-stock-editar>
+                                </td>
+
                                 <td>
                                     <button class="btn btn-danger" type="button" title="Excluir">Excluir</button>
                                   </td>
@@ -72,4 +79,5 @@
         </div>
     </div>
     </div>
+        
 </div>
