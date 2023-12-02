@@ -47,7 +47,7 @@
             <h2>WAREHOUSE ADMINISTRATION</h2>
         </div>
 
-    
+
 
         <div class="my-stock-container">
             <div class="mystock">
@@ -72,18 +72,20 @@
                             <td>{{ sku.nome }}</td>
                             <td>{{ sku.sku }}</td>
                             <td>{{ sku.descricao }}</td>
-                            <td><button (click)="update(sku)" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editSku">
-                                Edit Sku  
+                            <td><button (click)="update(sku)" type="button" class="btn btn-secondary"
+                                    data-bs-toggle="modal" data-bs-target="#editSku">
+                                    Edit Sku
                                 </button>
 
                             </td>
-                        </tr> 
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-<app-addsku [sku]="objetoSelecionadoParaEdicao" [skuAntigo] = "skuAntigo"  (retorno)="tratarEvent($event)"></app-addsku>
+        <app-addsku [sku]="objetoSelecionadoParaEdicao" [skuAntigo]="skuAntigo"
+            (retorno)="tratarEvent($event)"></app-addsku>
     </div>
 
 </div>

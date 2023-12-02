@@ -60,12 +60,14 @@ export class StockShowComponent implements OnInit {
 
 
   }
-  updateQuantidade() {
-    const componentId = this.Component.value.ComponentSku;
-    const newQuantidadeReal = this.Component.value.ComponentQuantidade;
   
+  updateQuantidade() {
+    
+    const componentSku = this.Component.value.ComponentSku;
+    const newQuantidadeReal = this.Component.value.ComponentQuantidade;
+    
     const updatedComponentBody = {
-      id: componentId,
+      id: componentSku,
       quantidade_real: newQuantidadeReal
     };
   
