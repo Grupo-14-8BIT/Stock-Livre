@@ -78,6 +78,7 @@ export class StockShowComponent implements OnInit {
   }
 
 
+
   updateQuantidade() {
 
     let idSKU = this.itemSelecionado.skuSimples.id;
@@ -88,6 +89,7 @@ export class StockShowComponent implements OnInit {
 
     this.stockService.updateQuantidade(this.itemSelecionado.id, this.itemSelecionado).subscribe((data: any) => {
       alert('tudo ok');
+
       console.log(data);
       this.carregarEstoqueContent();
       //window.location.reload();

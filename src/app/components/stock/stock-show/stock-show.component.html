@@ -61,6 +61,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              
               <form   (ngSubmit)="updateQuantidade()" [formGroup]="Component">
                 <div class="mb-3" *ngIf="itemSelecionado != null">
                     <label for="ComponentQuantidade" class="col-form-label">Quantidade:</label>

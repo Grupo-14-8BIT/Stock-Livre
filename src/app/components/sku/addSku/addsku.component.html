@@ -1,44 +1,47 @@
-<div class="containsAdd">
-  <div class="bothtopclms">
-    <div class="input-group mb-3">
-      <form (ngSubmit)="EditSku(sku)">
-        <ul class="linpts">
-          <li>
-            <label>PRODUTO</label>
-            <input type="text" [(ngModel)]="sku.nome" name="nome" class="form-control inp"
-              aria-describedby="inputGroup-sizing-default" required>
-          </li>
-          <li>
-            <label>SKU/CODE</label>
-            <input type="text" [(ngModel)]="sku.sku" name="sku" class="form-control inp"
-              aria-describedby="inputGroup-sizing-default" required>
-          </li>
-          <li>
-            <label>DESCRIPTION</label>
-            <input type="text" [(ngModel)]="sku.descricao" class="form-control inp" name="description"
-              aria-describedby="inputGroup-sizing-default" required>
-          </li>
-        </ul>
-      </form>
+
+
+
+<div class="modal fade" id="editSku" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalLabel">Editar SKU</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <div class="containsAdd">
+          <div class="bothtopclms">
+            <div class="input-group mb-3">
+              <form (ngSubmit)="EditSku(sku)">
+                <ul class="linpts">
+                  <li>
+                    <label>PRODUTO</label>
+                    <input type="text" [(ngModel)]="sku.nome" name="nome" class="form-control inp"
+                      aria-describedby="inputGroup-sizing-default" required>
+                  </li>
+                  <li>
+                    <label>SKU/CODE</label>
+                    <input type="text" [(ngModel)]="sku.sku" name="sku" class="form-control inp"
+                      aria-describedby="inputGroup-sizing-default" required>
+                  </li>
+                  <li>
+                    <label>DESCRIPTION</label>
+                    <input type="text" [(ngModel)]="sku.descricao" class="form-control inp" name="description"
+                      aria-describedby="inputGroup-sizing-default" required>
+                  </li>
+                </ul>
+              </form>
+            </div>
+
+           
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="close()" data-bs-dismiss="modal">Close</button>
+        <button type="submit" (click)="EditSku(sku)" class="btn btn-primary">Edit</button>
+        <button type="button" class="btn btn-danger" (click)="clearInputs()" class="btn btn-primary">CANCEL</button>
+      </div>
     </div>
-
-    <div class="clmAdd2">
-      <label>FOTO</label>
-      <input type="text" [(ngModel)]="sku.foto" name="Foto" class="form-control">
-    </div>
-  </div>
-
-  <div class="addbtns">
-    <button type="submit" (click)="EditSku(sku)" class="btn btn-primary"
-      style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1rem;">
-      EDIT</button>
-
-    <button type="button" class="btn btn-danger" (click)="clearInputs()"
-      style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;">
-      CANCEL</button>
-
-    <button type="button" class="btn btn-danger" (click)="close()"
-      style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;">
-      FECHAR</button>
   </div>
 </div>

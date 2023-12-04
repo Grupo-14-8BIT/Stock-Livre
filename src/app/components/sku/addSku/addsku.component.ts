@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Sku } from 'src/app/components/sku/sku'
 import { SkuService } from 'src/app/components/sku/sku.service'
@@ -11,20 +11,25 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./addsku.component.scss']
 })
 @Injectable()
-export class AddskuComponent {
+export class AddskuComponent implements OnInit{
 
   inputValue1: string = ''; // Initialize with empty string
   inputValue2: string = '';
   inputValue3: string = '';
 
   @Input() skuAntigo!: String;
-
   @Input() sku: Sku = new Sku();
   @Output() retorno = new EventEmitter<Sku>();
 
 
 
-  constructor(private skuService: SkuService) { }
+  constructor(private skuService: SkuService) { 
+
+  }
+  ngOnInit(): void {
+   
+
+  }
 
   EditSku(sku:Sku) {
     console.log(this.skuAntigo)
