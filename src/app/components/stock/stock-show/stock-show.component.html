@@ -6,20 +6,78 @@
           <tr>
               <th>SKU</th>
               <th>Qantidade</th>
-                
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">+</button>
           </tr>
       </thead>
       <tbody>
           <tr *ngFor="let item of component">
-              <td>{{ item.skuSimples.sku }}</td>
-              <td>{{ item.quantidade_real }}</td>
+              <td>{{ item?.id }}</td>
+              <td>{{ item?.skuSimples?.sku }}</td>
+              <td>{{ item?.quantidade_real }}</td>
               <td>
+                <a (click)="carregarObjeto(item)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"data-bs-whatever="@mdo"><i class="material-icons">&#xE5C9;</i></a>
             </td>
           </tr>
       </tbody>  
       
     </table>
-      
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form   (ngSubmit)="AddComponent()" [formGroup]="Component">
+                <div class="mb-3">
+                  <label for="ComponentSku" class="col-form-label">Produto:</label>
+                  <select name="" class="form-select" formControlName="ComponentSku">
+                    <option *ngFor="let item of SkuLista" [value]="item.sku">{{item.sku}}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                    <label for="ComponentQuantidade" class="col-form-label">Quantidade:</label>
+                    <input type="number" class="form-control" id="ComponentQuantidade" formControlName="ComponentQuantidade">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add Content</button>
+                  </div>
+                
+              </form>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              
+              <form   (ngSubmit)="updateQuantidade()" [formGroup]="Component">
+                <div class="mb-3" *ngIf="itemSelecionado != null">
+                    <label for="ComponentQuantidade" class="col-form-label">Quantidade:</label>
+                    <input type="number" class="form-control" id="ComponentQuantidade" [(ngModel)]="itemSelecionado.quantidade_real" formControlName="ComponentQuantidade">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Alterar</button>
+                  </div>
+                
+              </form>
+            </div>
+          
+          </div>
+        </div>
+      </div>
 </div>
 
    

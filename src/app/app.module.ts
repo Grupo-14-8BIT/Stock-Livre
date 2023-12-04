@@ -20,8 +20,7 @@ import { AddskuComponent } from './components/sku/addSku/addsku.component';
 import { StockAddComponent } from './components/stock/stock-add/stock-add.component';
 import { StockShowComponent } from './components/stock/stock-show/stock-show.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-
-
+import { StockEditarComponent } from './components/stock/stock-editar/stock-editar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     AddskuComponent,
     StockAddComponent,
     StockShowComponent,
-    SignUpComponent
+    SignUpComponent,
+    StockEditarComponent
   ],
   imports: [
     BrowserModule,

@@ -15,9 +15,10 @@ export class SkuComponent implements OnInit {
   
   objetoSelecionadoParaEdicao: Sku = new Sku();
   indiceSelecionadoParaEdicao!: number;
-
-  visible:boolean = false;
   
+  skuAntigo!: String;
+
+  visible:boolean = false;  
 
   constructor(private skuService : SkuService){}
   ngOnInit(): void {
@@ -51,6 +52,8 @@ export class SkuComponent implements OnInit {
 
      this.visible = !this.visible;
 
+     this.skuAntigo = sku.sku;
+     console.log(this.skuAntigo)
      this.objetoSelecionadoParaEdicao = Object.assign({}, sku); //clonando o objeto se for edição... pra não mexer diretamente na referência da lista
    }
 

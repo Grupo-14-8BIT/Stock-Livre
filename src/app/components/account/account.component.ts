@@ -16,7 +16,6 @@ export class AccountComponent implements OnInit {
 
     carroSelecionadoParaEdicao: any;
     constructor(private accountService: AccountService, private router: Router) { }
-    showAddAccount: boolean = false;
     redirect!: string;
 
     token! : string;
