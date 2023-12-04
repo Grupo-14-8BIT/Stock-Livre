@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { StockComponent } from './components/stock/stock.component';
@@ -10,7 +10,7 @@ import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { SideBarComponent } from './components/layout/side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
@@ -21,7 +21,6 @@ import { AddskuComponent } from './components/sku/addSku/addsku.component';
 import { StockAddComponent } from './components/stock/stock-add/stock-add.component';
 import { StockShowComponent } from './components/stock/stock-show/stock-show.component';
 import { StockEditarComponent } from './components/stock/stock-editar/stock-editar.component';
-
 
 
 @NgModule({
@@ -42,18 +41,20 @@ import { StockEditarComponent } from './components/stock/stock-editar/stock-edit
     AddskuComponent,
     StockAddComponent,
     StockShowComponent,
-    StockEditarComponent
+    StockEditarComponent,
+
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    NgbModule,
-    NgbModule,
-    ReactiveFormsModule,
-  ],
+  BrowserModule,
+  AppRoutingModule,
+  HttpClientModule,
+  FormsModule,
+  NgbModule,
+  NgbModule,
+  ReactiveFormsModule,
+],
   providers: [],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }
