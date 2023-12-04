@@ -1,4 +1,4 @@
-export class SingUp {
+export class SignUp {
     id!: number;
     firstname!: String;
     lastname!: String;

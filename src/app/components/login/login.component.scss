@@ -1,14 +1,27 @@
-
-.container {
-  width: 400px;
-
-  margin: 0 auto;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  border-radius: 5%;
-
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center; /* aligns vertically center */
+  justify-content: center; /* aligns horizontally center */
+  background-color: #be4444; /* or any color that suits your design */
 }
 
+body {
+  padding: 0;
+  box-sizing: border-box;
+  /* Ensures that padding and borders are included in the total width and height */
+}
 
+.container {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border-radius: 5%;
+  padding: 20px;
+  background-color: white; /* or any color you prefer */
+  width: 100%;
+  max-width: 400px;
+  /* Removed 'margin: 0 auto' because flexbox is now handling centering */
+}
 
 h1 {
   text-align: center;
@@ -17,9 +30,8 @@ h1 {
 }
 
 form {
+  width: 100%;
   margin-bottom: 20px;
-  align-items: center;
-
 }
 
 input {
@@ -47,4 +59,16 @@ button {
 
 button:hover {
   background-color: #0069d9;
+}
+
+/* Responsive Media Query */
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
 }

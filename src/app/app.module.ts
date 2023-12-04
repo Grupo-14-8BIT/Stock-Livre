@@ -6,7 +6,6 @@ import { SkuComponent } from './components/sku/sku.component';
 import { AccountComponent } from './components/account/account.component';
 import { AnnouncementComponent } from './components/announcement/announcement.component';
 import { LoginComponent } from './components/login/login.component';
-import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { SideBarComponent } from './components/layout/side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +19,7 @@ import { SellComponent } from './components/sell/sell.component';
 import { AddskuComponent } from './components/sku/addSku/addsku.component';
 import { StockAddComponent } from './components/stock/stock-add/stock-add.component';
 import { StockShowComponent } from './components/stock/stock-show/stock-show.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
 
@@ -31,7 +31,6 @@ import { StockShowComponent } from './components/stock/stock-show/stock-show.com
     AccountComponent,
     AnnouncementComponent,
     LoginComponent,
-    SingUpComponent,
     SideBarComponent,
     FooterComponent,
     HomePageComponent,
@@ -40,7 +39,8 @@ import { StockShowComponent } from './components/stock/stock-show/stock-show.com
     SellComponent,
     AddskuComponent,
     StockAddComponent,
-    StockShowComponent
+    StockShowComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
