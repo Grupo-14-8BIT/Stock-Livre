@@ -12,10 +12,6 @@ import { Injectable } from '@angular/core';
 })
 @Injectable()
 export class AddskuComponent implements OnInit{
-  getAll: any;
-  mudarSkuAnuncio() {
-    throw new Error('Method not implemented.');
-  }
 
   inputValue1: string = ''; // Initialize with empty string
   inputValue2: string = '';

@@ -4,20 +4,20 @@ import { SkuComponent } from './components/sku/sku.component';
 import { AccountComponent } from './components/account/account.component';
 import { AnnouncementComponent } from './components/announcement/announcement.component';
 import { LoginComponent } from './components/login/login.component';
+import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { StockComponent } from './components/stock/stock.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SellComponent } from './components/sell/sell.component';
 import { StockShowComponent } from './components/stock/stock-show/stock-show.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: 'full' },
+  { path: "", redirectTo: "entrar", pathMatch: 'full' },
   { path: "sku", component:  SkuComponent},
   { path: "account", component:  AccountComponent},
   { path: "announcement", component:  AnnouncementComponent},
   { path: "login", component:  LoginComponent},
-  { path: "signup", component:  SignUpComponent},
+  { path: "singup", component:  SingUpComponent},
   { path: "stock", component:  StockComponent, children: [{ path: "show", component: StockShowComponent}]},
   { path: "home", component:  HomePageComponent},
   { path: "dashboard", component:  DashboardComponent},
@@ -25,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

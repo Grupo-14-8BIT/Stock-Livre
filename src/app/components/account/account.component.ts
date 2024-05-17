@@ -13,14 +13,23 @@ import { Autoriza } from './autoriza';
 })
 export class AccountComponent implements OnInit {
     accounts: Account[] = [];
+    newAccount: Account = new Account();
+    showAddAccount: boolean = false;
+    selectedAccountForEdit: Account | null = null;
+    token! : string;
+    authorizationUrl: string | null = null;
 
     carroSelecionadoParaEdicao: any;
     constructor(private accountService: AccountService, private router: Router) { }
     redirect!: string;
-
-    token! : string;
-
+      
     ngOnInit(): void {
+        this.loadAllAccounts();
+        console.log(this.accounts);
+    }
+
+    loadAllAccounts(): void {
+
         this.accountService.getAllAccounts().subscribe((data : Account[])  => {
             this.accounts = data;
         }, (error: any) => {

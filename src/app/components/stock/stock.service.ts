@@ -9,7 +9,7 @@ import { componenteStock } from './stock-show/componenteStock';
 })
 export class StockService {
 
-  private baseURL = 'http://localhost:8082/api/v1/admin/estoque';
+  private baseURL = 'https://192.168.56.103:443/api/v1/admin/estoque';
 
   constructor(private httpClient: HttpClient, private cookieService : CookieService) { }
 

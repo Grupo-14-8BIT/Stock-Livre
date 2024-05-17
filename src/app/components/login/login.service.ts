@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Login, LoginResponse } from './login';
 import { Observable, map } from 'rxjs';
+import { SingUp } from '../sing-up/sing-up';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Observable, map } from 'rxjs';
 
 export class LoginService {
 
-  API: string = 'http://localhost:8082/api/v1/auth/authenticate';
+  API: string = 'https://192.168.56.103:443/api/v1/auth/authenticate';
   http = inject(HttpClient);
 
   constructor() {}
