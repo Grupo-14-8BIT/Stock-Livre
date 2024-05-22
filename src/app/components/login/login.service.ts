@@ -11,7 +11,7 @@ import { SingUp } from '../sing-up/sing-up';
 
 export class LoginService {
 
-  API: string = 'https://192.168.56.103:443/api/v1/auth/authenticate';
+  API: string = 'https://backend:443/api/v1/auth/authenticate';
   http = inject(HttpClient);
 
   constructor() {}

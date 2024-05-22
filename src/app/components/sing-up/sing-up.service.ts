@@ -8,7 +8,7 @@ import { Observable, map } from 'rxjs';
 })
 export class SingUpService {
 
-  API: string = 'https://192.168.56.103:443/api/v1/auth/register';
+  API: string = 'https://backend:443/api/v1/auth/register';
   http: HttpClient;
 
   constructor(httpClient: HttpClient) {

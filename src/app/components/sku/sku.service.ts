@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class SkuService {
 
-  API: string = 'https://192.168.56.103:443/api/v1/admin/sku';
+  API: string = 'https://backend:443/api/v1/admin/sku';
   http = inject(HttpClient);
 
   constructor( private cookieService: CookieService) {}

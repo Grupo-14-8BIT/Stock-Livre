@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
     providedIn: 'root'
 })
 export class AccountService {
-    private baseURL = "http://192.168.56.103:443/api/v1/admin/conta";
+    private baseURL = "https://backend:443/api/v1/admin/conta";
 
     constructor(private httpClient: HttpClient, private cookieService: CookieService, private router: Router) { }
 
