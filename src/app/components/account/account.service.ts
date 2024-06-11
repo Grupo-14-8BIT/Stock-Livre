@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
     providedIn: 'root'
 })
 export class AccountService {
-    private baseURL = "http://localhost:8082/api/v1/admin/conta";
+    private baseURL = "http://192.168.56.101:8082/api/v1/admin/conta";
+    // private baseURL = "http://localhost:8082/api/v1/admin/conta";
 
     constructor(private httpClient: HttpClient, private cookieService: CookieService, private router: Router) { }
 
