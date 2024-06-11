@@ -98,8 +98,10 @@ export class StockService {
 }
 
 
+
 updateQuantidade(id: number, update: any): any {
   
+
     
   this.token = this.cookieService.get("JWT");
 
@@ -109,7 +111,9 @@ updateQuantidade(id: number, update: any): any {
 
   options.headers = options.headers.set('Authorization', `Bearer ${this.token}`)
 
+
   return this.httpClient.put(`${this.baseURL }/updateContent?id=${id}`, update, options);
+
 
 }
 

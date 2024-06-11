@@ -14,8 +14,10 @@ export class StockComponent implements OnInit {
   showAddStock: boolean = false;
   showId!: number;
   show!:boolean;
+  stockId!: number;
   stock!:Stock;
   
+
 
 
   
@@ -30,6 +32,7 @@ export class StockComponent implements OnInit {
     this.carregarLista();
     
   } 
+
 
   carregarLista(){
     this.stockService.getAllStock().subscribe((data : Stock[])  => {
@@ -89,13 +92,12 @@ editarStock(stock : Stock){
   //     // Ocorreu um erro ao adicionar o novo estoque.
   //     // Exiba uma mensagem de erro para o usuário.
   //   }
-  // // }
+  // }
 
 
    editStock(stock: Stock): void {
-    console.log(`Edit Stock with ID: ${stock.id}`);
-  }
-
+     console.log(`Edit Stock with ID: ${stock.id}`);
+   }
 
 
   //  deleteStock(id: number) {
