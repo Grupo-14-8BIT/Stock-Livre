@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  API: string = 'http://localhost:8082/token/';
+  API: string = 'http://35.92.45.176:8082/token/';
 
   constructor(private http: HttpClient) {}
 
