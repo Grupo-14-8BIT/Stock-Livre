@@ -1,25 +1,17 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Login, LoginResponse } from './login';
-import { Observable, map } from 'rxjs';
-import { SingUp } from '../sing-up/sing-up';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-
-
 export class LoginService {
 
+  API: string = 'http://localhost:8082/token/';
 
-   //API: string = 'http://192.168.56.101:8082/api/v1/auth/authenticate';
-   API: string = 'http://localhost:8082/api/v1/auth/authenticate';
-  http = inject(HttpClient);
+  constructor(private http: HttpClient) {}
 
-  constructor() {}
-
-  
-  private getStandardOptions() : any {
+  private getStandardOptions(): any {
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -27,32 +19,15 @@ export class LoginService {
     };
   }
 
-
-  async fetch(email: string, password: string): Promise<Observable<any>> {
-    let options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
+  fetch(username: string, password: string): Observable<any> {
+    const body = {
+      clientId: 'stock_client',
+      password: password,
+      grantType: 'password',
+      username: username,
+      secret: 'cSMCp85UD55BWUCo2GDlMFjbqiFT795f'
     };
 
-    const params = {email : email, password : password};
-    let login = await this.http.post(this.API, JSON.stringify(params), options);
-
-    return login;
+    return this.http.post<any>(this.API, body, this.getStandardOptions());
   }
 }
-
-  // public async validateLogin(email: string, password: string): Promise<boolean> {
-  //   const loginResponse: LoginResponse = await this.fetch(email, password) as LoginResponse;
-
-  //   // Check if the login is valid
-  //   if (loginResponse.id && loginResponse.email && loginResponse.senha) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-
-
-

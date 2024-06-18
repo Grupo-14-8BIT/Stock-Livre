@@ -1,11 +1,11 @@
 export class Login {
     id?: number;
-    email?: string;
-    senha?: string;
-    emailExists?: boolean;
+    username?: string;
+    password?: string;
+
 }
 export interface LoginResponse{
     id: number;
-  email: string;
-  senha: string;
+    username: string;
+    password: string;
 }

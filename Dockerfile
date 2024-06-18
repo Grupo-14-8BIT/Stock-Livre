@@ -30,6 +30,7 @@ COPY --from=build /app/dist/stock-livre /usr/share/nginx/html
 
 # Expor a porta 80 para o tráfego HTTP
 EXPOSE 80
+EXPOSE 4200
 
 # Comando para iniciar o Nginx
 CMD ["nginx", "-g", "daemon off;"]

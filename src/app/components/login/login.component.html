@@ -1,17 +1,12 @@
 <div class="container">
   <h1>Logar</h1>
 
-
   <form id="logar" (ngSubmit)="logar()">
-      
-
-    <input type="email" class="form-control" id="email" placeholder="E-mail" [(ngModel)]="login.email"[ngModelOptions]="{standalone: true}">
-    <input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="login.senha"[ngModelOptions]="{standalone: true}">
-
-     <button  type="submit" for = "logar" class="btn btn-primary">logar</button>
-
+    <input type="text" class="form-control" id="username" placeholder="Usuário" [(ngModel)]="login.username" [ngModelOptions]="{standalone: true}">
+    <input type="password" class="form-control" id="password" placeholder="Senha" [(ngModel)]="login.password" [ngModelOptions]="{standalone: true}">
+    
+    <button type="submit" class="btn btn-primary">Logar</button>
   </form>
 
-   <p>dont have an account? <a href="/singup">sing up here</a></p>
-
+  <p>Não tem uma conta? <a href="/singup">Cadastre-se aqui</a></p>
 </div>
